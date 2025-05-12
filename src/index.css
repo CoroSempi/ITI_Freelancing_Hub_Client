@@ -1,0 +1,47 @@
+@font-face {
+  font-family: Shamel;
+  src: url("/ShamelFamily.ttf");
+}
+
+@font-face {
+  font-family: ShamelBold;
+  src: url("/ShamelFamilyBold.ttf");
+}
+
+body {
+  background-image: url("/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: "POPPINS";
+  font-size: 15px;
+  margin: 0px;
+  padding: 0px !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.mainBox {
+  background-image: url("/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: "POPPINS";
+  font-size: 15px;
+  margin: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: #bf272d;
+  font-weight: 600;
+  transition: all 0.5;
+}
+
+a:hover {
+  color: #df383d;
+}

@@ -1,0 +1,15 @@
+.signOut {
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #bf272d;
+  font-size: 18px;
+  font-weight: 550;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.signOut:hover {
+  scale: 1.1;
+}
