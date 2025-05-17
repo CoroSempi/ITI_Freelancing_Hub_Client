@@ -206,3 +206,166 @@ export const settingsLocalization = {
     about: "حول مركز العمل الحر ITI",
   },
 };
+export const learnMoreLocalization = {
+  en: {
+    title: "What is the ITI Freelancing Hub?",
+    subtitle:
+      "The ITI Freelancing Hub is designed specifically for students who have secured their own freelancing jobs. This platform allows students to upload the details of their jobs for administrative approval. Once approved, these opportunities contribute to their graduation requirements.",
+    howToUse: "How to Use the Platform?",
+    back: "Back",
+    copyright: "© 2025 ITI Freelancing Hub. All rights reserved.",
+    slides: [
+      {
+        id: 1,
+        title: "Registration and Sign In",
+        content: [
+          "Your admin will upload your email to the system. Once registered, you can log in to your account.",
+          "Use your registered email to access the platform. If it's your first time, you can reset your password as needed.",
+        ],
+      },
+      {
+        id: 2,
+        title: "User Profile Setup",
+        content: [
+          "Complete your profile with required information.",
+          "Upload a profile picture and add your contact details.",
+        ],
+      },
+      {
+        id: 3,
+        title: "Dashboard Overview",
+        content: [
+          "Access all features from your personalized dashboard.",
+          "View analytics and reports in real-time.",
+        ],
+      },
+      {
+        id: 4,
+        title: "Getting Support",
+        content: [
+          "Contact support team for any assistance.",
+          "Browse FAQ section for quick answers.",
+        ],
+      },
+    ],
+  },
+
+  ar: {
+    title: "ما هو مركز العمل الحر في المعهد التكنولوجي؟",
+    subtitle:
+      "تم تصميم مركز العمل الحر في المعهد التكنولوجي خصيصًا للطلاب الذين حصلوا على وظائف العمل الحر الخاصة بهم. تتيح هذه المنصة للطلاب تحميل تفاصيل وظائفهم للحصول على الموافقة الإدارية. بمجرد الموافقة، تساهم هذه الفرص في متطلبات التخرج الخاصة بهم.",
+    howToUse: "كيفية استخدام المنصة؟",
+    back: "رجوع",
+    copyright: "© 2025 ITI Freelancing Hub. All rights reserved.",
+    slides: [
+      {
+        id: 1,
+        title: "التسجيل وتسجيل الدخول",
+        content: [
+          "سيقوم المسؤول بتحميل بريدك الإلكتروني إلى النظام. بمجرد التسجيل، يمكنك تسجيل الدخول إلى حسابك.",
+          "استخدم بريدك الإلكتروني المسجل للوصول إلى المنصة. إذا كانت هذه هي المرة الأولى لك، يمكنك إعادة تعيين كلمة المرور حسب الحاجة.",
+        ],
+      },
+      {
+        id: 2,
+        title: "إعداد ملف المستخدم",
+        content: [
+          "أكمل ملفك الشخصي بالمعلومات المطلوبة.",
+          "قم بتحميل صورة الملف الشخصي وأضف تفاصيل الاتصال الخاصة بك.",
+        ],
+      },
+      {
+        id: 3,
+        title: "نظرة عامة على لوحة القيادة",
+        content: [
+          "الوصول إلى جميع الميزات من لوحة القيادة المخصصة لك.",
+          "عرض التحليلات والتقارير في الوقت الفعلي.",
+        ],
+      },
+      {
+        id: 4,
+        title: "الحصول على الدعم",
+        content: [
+          "اتصل بفريق الدعم لأي مساعدة.",
+          "تصفح قسم الأسئلة الشائعة للحصول على إجابات سريعة.",
+        ],
+      },
+    ],
+  },
+};
+export const chooseJobLocalization = {
+  en: {
+    addJob: "Add New Job",
+    chooseType: "Choose job type",
+    back: "Back",
+    next: "Next",
+    instructions:
+      "Please select the appropriate type to ensure it is categorized correctly. Here are the options:",
+    types: [
+      {
+        id: "platform",
+        label: "Freelancing job on platform",
+        description:
+          "Select this option if the job is posted on freelancing platforms like Mostaql,\nKhamsat,\nUpwork, etc.\nThese jobs typically involve working through a third-party site that handles payments and communications.",
+      },
+      {
+        id: "direct",
+        label: "Freelancing job with direct contact",
+        description:
+          "Choose this if the job comes from your personal network, such as connections on LinkedIn or referrals. These jobs often involve direct communication with the client without a middleman.",
+      },
+      {
+        id: "remote",
+        label: "Remote monthly job",
+        description:
+          "Use this option for traditional remote positions that offer a monthly salary. These jobs may have structured hours and responsibilities similar to in-office roles.",
+      },
+    ],
+  },
+  ar: {
+    addJob: "إضافة وظيفة جديدة",
+    chooseType: "اختر نوع الوظيفة",
+    back: "رجوع",
+    next: "التالي",
+    instructions:
+      "يرجى اختيار النوع المناسب لضمان تصنيفه بشكل صحيح. الخيارات المتاحة:",
+    types: [
+      {
+        id: "platform",
+        label: "وظيفة عمل حر على منصة",
+        description:
+          "اختر هذا الخيار إذا كانت الوظيفة منشورة على منصات العمل الحر مثل مستقل، خمسات، أب وورك، إلخ. غالباً ما يتم تنفيذ هذه الوظائف من خلال موقع وسيط يدير المدفوعات والتواصل.",
+      },
+      {
+        id: "direct",
+        label: "وظيفة عمل حر بتواصل مباشر",
+        description:
+          "اختر هذا الخيار إذا كانت الوظيفة من خلال معارفك الشخصية مثل لينكدإن أو توصية. غالباً ما تتطلب هذه الوظائف التواصل المباشر مع العميل بدون وسيط.",
+      },
+      {
+        id: "remote",
+        label: "وظيفة عن بُعد براتب شهري",
+        description:
+          "استخدم هذا الخيار للوظائف عن بُعد التي تقدم راتباً شهرياً. غالباً ما تحتوي هذه الوظائف على ساعات عمل وهيكل مسؤوليات مشابه للوظائف المكتبية.",
+      },
+    ],
+  },
+};
+export const deleteModalLocalization = {
+  en: {
+    title: "Deletion Confirmation",
+    message: "Are you sure you want to delete this {item}? This action cannot be undone, and all associated data will be permanently removed.",
+    job: "job",
+    certificate: "certificate",
+    cancel: "Cancel",
+    delete: "Delete",
+  },
+  ar: {
+    title: "تأكيد الحذف",
+    message: "هل أنت متأكد أنك تريد حذف {item}؟ هذا الإجراء لا يمكن التراجع عنه، وسيتم حذف جميع البيانات المرتبطة نهائيًا.",
+    job: "الوظيفة",
+    certificate: "الشهادة",
+    cancel: "إلغاء",
+    delete: "حذف",
+  },
+};

@@ -9,8 +9,10 @@ import { Typography, useTheme } from "@mui/material";
 import Settings from "../settings/Settings";
 
 import { headerLocalization } from "../../StaticData/Localization";
+import { useNavigate } from "react-router-dom";
 
 export default function NavDrop() {
+  const nav = useNavigate();
   const theme = useTheme();
   const { lang } = useContext(LocalizationProvider);
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -38,14 +40,16 @@ export default function NavDrop() {
               direction: lang === "ar" && "rtl",
             },
           },
-        }}>
+        }}
+      >
         <MenuItem sx={{ display: "none" }} hidden={true} value="Account">
           <Typography
             sx={{
               marginTop: lang == "ar" ? "5px" : "",
               fontFamily: lang == "ar" ? "Shamel" : "",
               fontSize: lang == "ar" ? "15px" : "",
-            }}>
+            }}
+          >
             {headerLocalization[lang].account}
           </Typography>
         </MenuItem>
@@ -54,7 +58,8 @@ export default function NavDrop() {
             sx={{
               fontFamily: lang == "ar" ? "ShamelBold" : "",
               fontSize: lang == "ar" ? "14px" : "",
-            }}>
+            }}
+          >
             {headerLocalization[lang].chats}
           </Typography>
         </MenuItem>
@@ -63,25 +68,30 @@ export default function NavDrop() {
             sx={{
               fontFamily: lang == "ar" ? "ShamelBold" : "",
               fontSize: lang == "ar" ? "14px" : "",
-            }}>
+            }}
+          >
             {headerLocalization[lang].notification}
           </Typography>
         </MenuItem>
         <MenuItem>
           <Typography
+            onClick={() => nav("/choosejob")}
             sx={{
               fontFamily: lang == "ar" ? "ShamelBold" : "",
               fontSize: lang == "ar" ? "14px" : "",
-            }}>
+            }}
+          >
             {headerLocalization[lang].addNewJob}
           </Typography>
         </MenuItem>
         <MenuItem>
           <Typography
+          onClick={() => nav("/newCetificate")}
             sx={{
               fontFamily: lang == "ar" ? "ShamelBold" : "",
               fontSize: lang == "ar" ? "14px" : "",
-            }}>
+            }}
+          >
             {headerLocalization[lang].certificate}
           </Typography>
         </MenuItem>
@@ -90,7 +100,8 @@ export default function NavDrop() {
             sx={{
               fontFamily: lang == "ar" ? "ShamelBold" : "",
               fontSize: lang == "ar" ? "14px" : "",
-            }}>
+            }}
+          >
             {headerLocalization[lang].settings}
           </Typography>
         </MenuItem>

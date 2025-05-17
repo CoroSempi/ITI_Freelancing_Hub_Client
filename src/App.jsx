@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, {  useState } from "react";
 import "./App.css";
 import { Box, Stack, ThemeProvider } from "@mui/material";
 import { lightTheme, darkTheme } from "./StaticData/themes";
@@ -45,7 +45,8 @@ function App() {
             className="mainBox"
             sx={{ backgroundColor: "background.default" }}>
             {!location.pathname.includes("auth") &&
-              !location.pathname.includes("notFound") && (
+              !location.pathname.includes("notFound") && 
+              !location.pathname.includes("learnMore") && (
                 <Header handleToggle={handleToggle} darkMode={darkMode} />
               )}
 

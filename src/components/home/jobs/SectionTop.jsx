@@ -1,8 +1,10 @@
 import { Box, Stack, Typography, useTheme } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function SectionTop() {
   const theme = useTheme();
+   const navigate = useNavigate()
   return (
     <Box
       sx={{
@@ -36,6 +38,7 @@ export default function SectionTop() {
         </Typography>
       </Stack>
       <button
+      onClick={() => navigate("/choosejob")}
         style={{
           border: "0.5px solid #44B40D",
           padding: "10px 20px",

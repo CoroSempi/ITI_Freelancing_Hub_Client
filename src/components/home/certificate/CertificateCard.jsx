@@ -1,9 +1,17 @@
 import React from "react";
 import { Box, Link, Stack, Typography, useTheme } from "@mui/material";
-
+import { useNavigate } from "react-router-dom";
 export default function CertificateCard({ certificate, name }) {
-  const theme = useTheme();
+    const theme = useTheme();
+    const navigate = useNavigate ();
 
+  // const handleReadMore = () => {
+  //   navigate('/certificateDetails'); 
+  // };
+  
+ const handleReadMore = () => {
+  navigate(`/certificateDetails/${certificate._id}`);
+};
   return (
     <Box
       sx={{
@@ -115,7 +123,8 @@ export default function CertificateCard({ certificate, name }) {
           </Stack>
         </Stack>
 
-        <Stack
+     
+             <Stack
           justifyContent={"end"}
           alignItems={"center"}
           direction={"row"}
@@ -127,6 +136,7 @@ export default function CertificateCard({ certificate, name }) {
             spacing={1}>
             <a color={theme.palette.primary.sec}>
               <Typography
+              onClick={handleReadMore}
                 fontWeight={550}
                 sx={{ cursor: "pointer", fontSize: { xs: "12px", sm: "15px" } }}
                 color="inherit">
