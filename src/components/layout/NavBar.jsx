@@ -1,6 +1,6 @@
 import React from "react";
 import { Stack, useTheme } from "@mui/material";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import NavDrop from "./NavDrop";
 import { useContext } from "react";
@@ -29,27 +29,27 @@ export default function NavBar() {
         direction="row"
         justifyContent="space-between"
         color={theme.palette.primary.main}>
-        <a
+        <Link
           style={{
             color: home ? theme.palette.primary.iti : "inherit",
             fontFamily: lang == "ar" ? "ShamelBold" : "",
             fontSize: lang == "ar" ? "15px" : "",
           }}
-          href="/">
+          to={"/"}>
           {headerLocalization[lang].home}
-        </a>
+        </Link>
         <div>
           <NavDrop />
         </div>
-        <a
+        <Link
           style={{
             color: home ? "inherit" : theme.palette.primary.iti,
             fontFamily: lang == "ar" ? "ShamelBold" : "",
             fontSize: lang == "ar" ? "15px" : "",
           }}
-          href="/learnMore">
+          to={"/learnMore"}>
           {headerLocalization[lang].about2}
-        </a>
+        </Link>
       </Stack>
     </>
   );

@@ -57,9 +57,9 @@ export default function AllJobs() {
           alignItems: "start",
           gap: { xs: 2, sm: 2.5 },
         }}>
-        {jobs.map((job) => (
-          <RequestCard key={job.jobData._id} job={job} />
-        ))}
+        {jobs.map((job) =>
+          job.jobData ? <RequestCard key={job.jobData._id} job={job} /> : null
+        )}
       </Box>
     </Stack>
   );

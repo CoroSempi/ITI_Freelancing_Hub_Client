@@ -11,32 +11,19 @@ export default function General() {
   const theme = useTheme();
   const { lang, handleToggle, handleToggleLang } =
     useContext(LocalizationProvider);
-  console.log(lang);
 
   const localization = settingsLocalization;
 
   return (
     <div>
       <>
-        <ListSubheader
-          sx={{
-            backgroundColor: "inherit",
-            fontWeight: "bold",
-            color: theme.palette.primary.main,
-            fontSize: "20px",
-            marginTop: "10px",
-            fontFamily: lang == "ar" ? "ShamelBold" : "",
-          }}>
-          {localization[lang].title}
-        </ListSubheader>
-
         <List>
           <ListSubheader
             sx={{
               backgroundColor: "inherit",
               fontWeight: 550,
               color: theme.palette.primary.sec,
-              fontSize: "18px",
+              fontSize: lang == "ar" ? 15 : "18px",
               fontFamily: lang == "ar" ? "ShamelBold" : "",
             }}>
             {localization[lang].subTitle1}

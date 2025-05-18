@@ -1,29 +1,37 @@
 import React from "react";
 import { Box, Link, Stack, Typography, useTheme } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-export default function CertificateCard({ certificate, name }) {
-    const theme = useTheme();
-    const navigate = useNavigate ();
 
-  // const handleReadMore = () => {
-  //   navigate('/certificateDetails'); 
-  // };
-  
- const handleReadMore = () => {
-  navigate(`/certificateDetails/${certificate._id}`);
-};
+export default function CertificateCard({ certificate, name }) {
+  const theme = useTheme();
+
   return (
     <Box
       sx={{
         display: "flex",
-
+        alignItems: "center",
         backgroundColor: theme.palette.background.card,
-        minWidth: { xs: "100%", xl: "32.5%" },
-        maxWidth: { xs: "100%", xl: "32.5%" },
+        minWidth: { xs: "100%", xl: "30%" },
+        maxWidth: { xs: "100%", xl: "33.33%" },
+        height: {xs:"230px",sm:"270px"},
+        flex: 1,
         position: "relative",
         pl: 1,
         overflow: "hidden",
       }}>
+      <a color={theme.palette.primary.sec}>
+        <Typography
+          fontWeight={550}
+          sx={{
+            cursor: "pointer",
+            fontSize: { xs: "12px", sm: "15px" },
+            position: "absolute",
+            bottom: "15px",
+            right: "15px",
+          }}
+          color="inherit">
+          Read More
+        </Typography>
+      </a>
       <img
         style={{
           opacity: certificate.verified
@@ -55,7 +63,7 @@ export default function CertificateCard({ certificate, name }) {
       />
 
       <Stack
-        spacing={1}
+        spacing={1.5}
         sx={{
           padding: 2,
           width: "100%",
@@ -78,8 +86,9 @@ export default function CertificateCard({ certificate, name }) {
 
         <Typography
           sx={{
+            textAlign: "center",
             display: "-webkit-box",
-            WebkitLineClamp: 4,
+            WebkitLineClamp: 3,
             WebkitBoxOrient: "vertical",
             overflow: "hidden",
             textOverflow: "ellipsis",
@@ -123,28 +132,11 @@ export default function CertificateCard({ certificate, name }) {
           </Stack>
         </Stack>
 
-     
-             <Stack
+        <Stack
           justifyContent={"end"}
           alignItems={"center"}
           direction={"row"}
-          minWidth={"100%"}>
-          <Stack
-            justifyContent={"center"}
-            alignItems={"center"}
-            direction={"row"}
-            spacing={1}>
-            <a color={theme.palette.primary.sec}>
-              <Typography
-              onClick={handleReadMore}
-                fontWeight={550}
-                sx={{ cursor: "pointer", fontSize: { xs: "12px", sm: "15px" } }}
-                color="inherit">
-                Read More
-              </Typography>
-            </a>
-          </Stack>
-        </Stack>
+          minWidth={"100%"}></Stack>
       </Stack>
     </Box>
   );

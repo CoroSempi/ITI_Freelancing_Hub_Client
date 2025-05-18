@@ -1,4 +1,4 @@
-import { Language } from "@mui/icons-material";
+import { Description, Language } from "@mui/icons-material";
 
 export const signInLocalization = {
   en: {
@@ -182,6 +182,9 @@ export const headerLocalization = {
 export const settingsLocalization = {
   en: {
     title: "Settings",
+    title2: "Edit My Profile",
+    title3: "Chat with Admin",
+    title4: "Reset Password",
     subTitle1: "General",
     subTitle2: "Account Settings",
     subTitle3: "Support",
@@ -191,10 +194,31 @@ export const settingsLocalization = {
     changePassword: "Change Password",
     chat: "Chat with us",
     about: "About ITI Freelancing Hub",
+    notifications: "Notifications",
+    back: "Back",
+    settingBack: "Back to Settings",
+    submit: "Submit",
+    getStarted: "Get Started",
+    currentPassword: "Current Password",
+    newPassword: "New Password",
+    repeatPassword: "Repeat New Password",
+    passwordResetSuccess: "Password changed successfully!",
+    passwordResetError: "Failed to change password. Try again.",
+    editProfileDesc:
+      "Your personal information is based on what you registered during the training. If you need to update any of this information, please contact the admin for assistance.",
+    chatsMainDesc:
+      "If you have any questions or encounter any issues, you’re in the right place.",
+    chatSecDesc:
+      "Welcome! If you have any questions or problems, feel free to chat with our admin here. Just type your message below, and we’ll get back to you as soon as possible. We're here to help!",
+    resetPasswordDesc:
+      'If you’ve forgotten your password, simply sign out and click on "Forgot Password?" on the login page to reset it using your registered email address.',
   },
 
   ar: {
     title: "الإعدادات",
+    title2: "تعديل الملف الشخصي",
+    title3: "تحدث مع المشرف",
+    title4: "تغيير كلمة المرور",
     subTitle1: "عام",
     subTitle2: "إعدادات الحساب",
     subTitle3: "الدعم",
@@ -204,6 +228,24 @@ export const settingsLocalization = {
     changePassword: "تغيير كلمة المرور",
     chat: "تحدث معنا",
     about: "حول مركز العمل الحر ITI",
+    notifications: "الإشعارات",
+    back: "العودة الى الصفحة الرئيسية",
+    settingBack: "العودة الى صفحة الإعدادات",
+    submit: "تأكيد",
+    getStarted: "ابدأ الآن",
+    currentPassword: "كلمة المرور الحالية",
+    newPassword: "كلمة المرور الجديدة",
+    repeatPassword: "تكرار كلمة المرور الجديدة",
+    passwordResetSuccess: "تم تغيير كلمة المرور بنجاح!",
+    passwordResetError: "فشل تغيير كلمة المرور. حاول مرة اخرى.",
+    editProfileDesc:
+      "تعتمد معلوماتك الشخصية على ما تم تسجيله أثناء التدريب. إذا كنت بحاجة إلى تحديث أي من هذه المعلومات، يرجى التواصل مع المسؤول للمساعدة.",
+    chatsMainDesc:
+      "إذا كان لديك أي استفسارات أو حصلت على مشكلة، فإنك في المكان الصحيح.",
+    chatSecDesc:
+      "مرحبًا! إذا كانت لديك أي أسئلة أو مشكلات، فلا تتردد في التواصل مع المسؤول هنا. فقط اكتب رسالتك أدناه، وسنرد عليك في أقرب وقت ممكن. نحن هنا لمساعدتك!",
+    resetPasswordDesc:
+      "إذا نسيت كلمة المرور، ما عليك سوى تسجيل الخروج والنقر على 'هل نسيت كلمة المرور؟' في صفحة تسجيل الدخول لإعادة تعيينها باستخدام عنوان بريدك الإلكتروني المسجّل.",
   },
 };
 export const learnMoreLocalization = {
