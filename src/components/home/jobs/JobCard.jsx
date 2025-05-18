@@ -4,8 +4,6 @@ import Prices from "./Prices";
 
 export default function JobCard({ job }) {
   const theme = useTheme();
-  const text =
-    "Develop a responsive website for a local bakery that showcases its products and allows customers to place orders online. The site should include an online menu, a contact page, and a blog section for updates. The design must re... .";
   return (
     <Box
       sx={{
