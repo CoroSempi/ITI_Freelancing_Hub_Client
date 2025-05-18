@@ -6,23 +6,10 @@ import { useTheme } from "@mui/material";
 import { useContext } from "react";
 import LocalizationProvider from "../../context/localizationContext";
 import General from "./General";
+import Settings from "../../pages/Settings/Settings";
 
-export default function Settings({ open, settingsDrawer }) {
-  const theme = useTheme();
+export default function SettingsDrawer({ open, settingsDrawer }) {
   const { lang } = useContext(LocalizationProvider);
-
-  const DrawerList = (
-    <Box
-      sx={{
-        width: "80vw",
-        maxWidth: "350px",
-        direction: lang === "ar" && "rtl",
-      }}
-      role="presentation">
-      <General />
-      <Divider />
-    </Box>
-  );
 
   return (
     <div>
@@ -30,7 +17,7 @@ export default function Settings({ open, settingsDrawer }) {
         anchor={lang == "en" ? "left" : "right"}
         open={open}
         onClose={settingsDrawer(false)}>
-        {DrawerList}
+        <Settings />
       </Drawer>
     </div>
   );

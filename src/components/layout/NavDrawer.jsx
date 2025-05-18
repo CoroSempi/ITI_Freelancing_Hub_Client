@@ -13,7 +13,7 @@ import { useContext } from "react";
 
 import { headerLocalization } from "../../StaticData/Localization";
 import LocalizationProvider from "../../context/localizationContext";
-import Settings from "../settings/Settings";
+
 import { useNavigate } from "react-router-dom";
 import { signOut } from "../../redux/slices/auth";
 import { useDispatch } from "react-redux";
@@ -24,13 +24,8 @@ export default function NavDrawer({ open, navDrawer }) {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
-  const [settingsOpen, setSettingsOpen] = React.useState(false);
   const isArabic = lang === "ar";
   const localization = headerLocalization[lang];
-
-  const handleSettingsToggle = (newOpen) => () => {
-    setSettingsOpen(newOpen);
-  };
 
   const handleSignOut = () => {
     dispatch(signOut());
@@ -87,7 +82,7 @@ export default function NavDrawer({ open, navDrawer }) {
               sx={{ my: 1 }}
               onClick={
                 item === "settings"
-                  ? handleSettingsToggle(true)
+                  ? () => nav("/settings")
                   : item === "signOut"
                   ? () => handleSignOut()
                   : item === "home"
@@ -112,7 +107,6 @@ export default function NavDrawer({ open, navDrawer }) {
         onClose={navDrawer(false)}>
         {DrawerList}
       </Drawer>
-      <Settings open={settingsOpen} settingsDrawer={handleSettingsToggle} />
     </>
   );
 }

@@ -1,6 +1,12 @@
 import React from "react";
 import SectionTop from "./SectionTop.jsx";
-import { Box, CircularProgress, Stack } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Stack,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
@@ -9,6 +15,7 @@ import CertificateCard from "./CertificateCard.jsx";
 export default function AllCertificates({ name }) {
   const baseUrl = "https://iti-freelancing-hub-server.vercel.app/students/";
   const [certificates, setCertificates] = useState(null);
+  const theme = useTheme();
 
   async function getCertificates(token) {
     try {
@@ -57,13 +64,27 @@ export default function AllCertificates({ name }) {
           alignItems: "start",
           gap: { xs: 2, sm: 2.5 },
         }}>
-        {certificates.map((certificate) => (
-          <CertificateCard
-            name={name}
-            key={certificate._id}
-            certificate={certificate}
-          />
-        ))}
+        {certificates.length ? (
+          certificates.map((certificate) => (
+            <CertificateCard
+              name={name}
+              key={certificate._id}
+              certificate={certificate}
+            />
+          ))
+        ) : (
+          <Stack
+            sx={{ width: "100%", minHeight: "150px" }}
+            justifyContent={"center"}
+            alignItems={"center"}>
+            <Typography
+              textAlign={"center"}
+              variant="body1"
+              color={theme.palette.primary.sec}>
+              No Certificates yet !
+            </Typography>
+          </Stack>
+        )}
       </Box>
     </Stack>
   );

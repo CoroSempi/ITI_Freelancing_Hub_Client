@@ -12,12 +12,36 @@ export default function JobCard({ job }) {
         display: "flex",
         alignItems: "center",
         backgroundColor: theme.palette.background.card,
-        minWidth: { xs: "100%", xl: "32.5%" },
-        maxWidth: { xs: "100%", xl: "32.5%" },
+        minWidth: { xs: "100%", xl: "30%" },
+        maxWidth: { xs: "100%", xl: "33.33%" },
+        height: { xs: "250px", sm: "270px" },
+        flex: 1,
         position: "relative",
         pl: 1,
         overflow: "hidden",
       }}>
+      <Stack
+        justifyContent={"center"}
+        alignItems={"center"}
+        direction={"row"}
+        sx={{ position: "absolute", bottom: "15px", right: "15px" }}
+        spacing={1}>
+        <a color={theme.palette.primary.sec}>
+          <Typography
+            fontWeight={550}
+            sx={{ cursor: "pointer", fontSize: { xs: "12px", sm: "15px" } }}
+            color="inherit">
+            Read More
+          </Typography>
+        </a>
+        <Typography
+          fontWeight={550}
+          sx={{ cursor: "pointer", fontSize: { xs: "12px", sm: "15px" } }}
+          color={theme.palette.primary.sec}>
+          {job.jobData.comments.length} Comments
+        </Typography>
+      </Stack>
+
       <img
         style={{
           position: "absolute",
@@ -65,7 +89,7 @@ export default function JobCard({ job }) {
         <Typography
           sx={{
             display: "-webkit-box",
-            WebkitLineClamp: 4,
+            WebkitLineClamp: 3,
             WebkitBoxOrient: "vertical",
             overflow: "hidden",
             textOverflow: "ellipsis",
@@ -137,27 +161,6 @@ export default function JobCard({ job }) {
           direction={"row"}
           minWidth={"100%"}>
           <Prices usd={job.jobData.costInUSD || job.jobData.paymentInUSD} />
-
-          <Stack
-            justifyContent={"center"}
-            alignItems={"center"}
-            direction={"row"}
-            spacing={1}>
-            <a color={theme.palette.primary.sec}>
-              <Typography
-                fontWeight={550}
-                sx={{ cursor: "pointer", fontSize: { xs: "12px", sm: "15px" } }}
-                color="inherit">
-                Read More
-              </Typography>
-            </a>
-            <Typography
-              fontWeight={550}
-              sx={{ cursor: "pointer", fontSize: { xs: "12px", sm: "15px" } }}
-              color={theme.palette.primary.sec}>
-              {job.jobData.comments.length} Comments
-            </Typography>
-          </Stack>
         </Stack>
       </Stack>
     </Box>

@@ -19,6 +19,23 @@ export const tokenExpiration = createAsyncThunk(
   }
 );
 
+export const changePassword = createAsyncThunk(
+  "auth/changePassword",
+  async (body, thunkAPI) => {
+    try {
+      console.log(localStorage.getItem("AccessToken"));
+      const response = await axios.patch(baseUrl + "changePassword", body, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("AccessToken")} `,
+        },
+      });
+      return response.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response.data);
+    }
+  }
+);
+
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -42,6 +59,10 @@ export const authSlice = createSlice({
         localStorage.removeItem("AccessToken");
         localStorage.removeItem("studentData");
       });
+
+    builder.addCase(changePassword.fulfilled, (state, action) => {
+      console.log(action.payload);
+    });
   },
 });
 

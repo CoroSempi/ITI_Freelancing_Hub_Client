@@ -2,21 +2,27 @@ import React, { useState, useContext } from "react";
 
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import ListItemText from "@mui/material/ListItemText";
 
 import LocalizationProvider from "../../context/localizationContext";
 import { Typography, useTheme } from "@mui/material";
-import Settings from "../settings/Settings";
 
 import { headerLocalization } from "../../StaticData/Localization";
+
+import SettingsDrawer from "../settings/SettingsDrawer";
 
 export default function NavDrop() {
   const theme = useTheme();
   const { lang } = useContext(LocalizationProvider);
   const [settingsOpen, setSettingsOpen] = useState(false);
 
+  const [profileOpen, setProfileOpen] = useState(false);
+
   const settingsDrawer = (newOpen) => () => {
     setSettingsOpen(newOpen);
+  };
+
+  const profileDrawer = (newOpen) => () => {
+    setProfileOpen(newOpen);
   };
 
   return (
@@ -49,24 +55,8 @@ export default function NavDrop() {
             {headerLocalization[lang].account}
           </Typography>
         </MenuItem>
-        <MenuItem>
-          <Typography
-            sx={{
-              fontFamily: lang == "ar" ? "ShamelBold" : "",
-              fontSize: lang == "ar" ? "14px" : "",
-            }}>
-            {headerLocalization[lang].chats}
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <Typography
-            sx={{
-              fontFamily: lang == "ar" ? "ShamelBold" : "",
-              fontSize: lang == "ar" ? "14px" : "",
-            }}>
-            {headerLocalization[lang].notification}
-          </Typography>
-        </MenuItem>
+        <MenuItem></MenuItem>
+
         <MenuItem>
           <Typography
             sx={{
@@ -95,7 +85,7 @@ export default function NavDrop() {
           </Typography>
         </MenuItem>
       </Select>
-      <Settings open={settingsOpen} settingsDrawer={settingsDrawer} />
+      <SettingsDrawer open={settingsOpen} settingsDrawer={settingsDrawer} />
     </>
   );
 }
