@@ -35,9 +35,9 @@ export default function SectionTop() {
           Certificates
         </Typography>
       </Stack>
-    
-    <button
-      onClick={()=>navigate("newCetificate")}
+
+      <button
+        onClick={() => navigate("addCertificate")}
         style={{
           border: "0.5px solid #44B40D",
           padding: "10px 20px",

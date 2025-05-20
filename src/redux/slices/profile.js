@@ -65,6 +65,9 @@ export const profileSlice = createSlice({
         state.loading = false;
         state.studentData = action.payload;
         state.error = null;
+
+        localStorage.setItem("trackID", action.payload.trackID);
+        localStorage.setItem("studentId", action.payload._id);
       })
       .addCase(StudentData.pending, (state, action) => {
         state.loading = true;

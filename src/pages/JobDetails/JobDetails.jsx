@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Button, Chip, Stack, Typography } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { useTheme } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -10,7 +10,7 @@ import DeleteModal from "../../components/ModalDelete/ModalDelete";
 
 function JobDetails() {
   const theme = useTheme();
-  // const navigate = useNavigate();
+  const nav = useNavigate();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [job, setJob] = useState(null);
   const { jobId } = useParams();
@@ -64,14 +64,14 @@ function JobDetails() {
           justifyContent: "center",
           alignItems: "center",
           height: "50vh",
-        }}
-      >
+        }}>
         <CircularProgress color={theme.palette.primary.iti} />
       </Box>
     );
   }
 
   const jobData = job.jobData;
+  const canEdit = job.canEdit;
 
   return (
     <Box
@@ -79,21 +79,18 @@ function JobDetails() {
         margin: { xs: "70px 10px", md: "90px 30px" },
         width: { xs: "90%", md: "60%" },
         padding: isMobile ? "20px" : "",
-      }}
-    >
+      }}>
       <Stack
         direction="row"
         alignItems="center"
         spacing={2}
-        sx={{ color: theme.palette.primary.main }}
-      >
+        sx={{ color: theme.palette.primary.main }}>
         <Typography
           fontWeight={600}
           sx={{
             fontFamily: "Poppins",
             fontSize: isMobile ? "18px" : "25px",
-          }}
-        >
+          }}>
           {jobData.jobTitle}
         </Typography>
         <Chip
@@ -115,8 +112,7 @@ function JobDetails() {
           width: "327px",
           mt: 1,
           cursor: "pointer",
-        }}
-      >
+        }}>
         {jobData.jobType}
       </Typography>
 
@@ -127,10 +123,9 @@ function JobDetails() {
           fontSize: "15px",
           fontWeight: 500,
           letterSpacing: "0.3px",
-          width: isMobile ? "100%" : "60%",
+          width: { xs: "100%", lg: "80%" },
           mt: 2,
-        }}
-      >
+        }}>
         {jobData.jobDescription}
       </Typography>
 
@@ -143,8 +138,7 @@ function JobDetails() {
             fontWeight: 600,
             letterSpacing: "0.3px",
             alignSelf: "stretch",
-          }}
-        >
+          }}>
           Contributors:{" "}
           <Box component="span" fontWeight={400}>
             {jobData.teamMembers && jobData.teamMembers.length > 0
@@ -165,8 +159,7 @@ function JobDetails() {
               component="span"
               // color="#A7A5A5"
               fontWeight={"bold"}
-              fontSize={16}
-            >
+              fontSize={16}>
               Start :
             </Box>{" "}
             {jobData.startDate}
@@ -179,10 +172,8 @@ function JobDetails() {
             <Box
               sx={{ color: theme.palette.primary.main }}
               component="span"
-              // color="#A7A5A5"
               fontWeight={"bold"}
-              fontSize={16}
-            >
+              fontSize={16}>
               Completion :
             </Box>{" "}
             {jobData.endDate || "pending"}
@@ -190,44 +181,42 @@ function JobDetails() {
         </Stack>
       </Stack>
 
-    <Stack direction="row" spacing={4} mt={2} alignItems="center">
-  {(jobData.costInUSD || jobData.paymentInUSD) && (
-    <Typography
-      fontWeight={600}
-      sx={{
-        fontFamily: "REM",
-        fontSize: "16px",
-        letterSpacing: "0.32px",
-      }}
-    >
-      <Box component="span" sx={{ color: "#44B40D" }}>
-        $
-      </Box>{" "}
-      <Box component="span" sx={{ color: theme.palette.primary.main }}>
-        {jobData.costInUSD || jobData.paymentInUSD}
-      </Box>
-    </Typography>
-  )}
+      <Stack direction="row" spacing={4} mt={2} alignItems="center">
+        {(jobData.costInUSD || jobData.paymentInUSD) && (
+          <Typography
+            fontWeight={600}
+            sx={{
+              fontFamily: "REM",
+              fontSize: "16px",
+              letterSpacing: "0.32px",
+            }}>
+            <Box component="span" sx={{ color: "#44B40D" }}>
+              $
+            </Box>{" "}
+            <Box component="span" sx={{ color: theme.palette.primary.main }}>
+              {jobData.costInUSD || jobData.paymentInUSD}
+            </Box>
+          </Typography>
+        )}
 
-  {(jobData.costInEGP || jobData.paymentInEGP) && (
-    <Typography
-      fontWeight={600}
-      sx={{
-        fontFamily: "REM",
-        fontSize: "16px",
-        letterSpacing: "0.32px",
-      }}
-    >
-      <Box component="span" sx={{ color: "#44B40D" }}>
-        EGP
-      </Box>{" "}
-      <Box component="span" sx={{ color: theme.palette.primary.main }}>
-        {jobData.costInEGP || jobData.paymentInEGP}
-      </Box>
-    </Typography>
-  )}
-</Stack>
-      <Box mt={3}>
+        {(jobData.costInEGP || jobData.paymentInEGP) && (
+          <Typography
+            fontWeight={600}
+            sx={{
+              fontFamily: "REM",
+              fontSize: "16px",
+              letterSpacing: "0.32px",
+            }}>
+            <Box component="span" sx={{ color: "#44B40D" }}>
+              EGP
+            </Box>{" "}
+            <Box component="span" sx={{ color: theme.palette.primary.main }}>
+              {jobData.costInEGP || jobData.paymentInEGP}
+            </Box>
+          </Typography>
+        )}
+      </Stack>
+      {/* <Box mt={3}>
         <Typography
           fontWeight={600}
           sx={{
@@ -258,17 +247,17 @@ function JobDetails() {
               ))
             : "No Comments Yet"}
         </Typography>
-      </Box>
+      </Box> */}
 
       <Stack
+        display={canEdit ? "flex" : "none"}
         direction={{ xs: "column-reverse", sm: "row" }}
         spacing={2}
         sx={{
           my: 2,
           width: "100%",
           marginLeft: isMobile ? "10px" : "",
-        }}
-      >
+        }}>
         <Button
           onClick={handleOpenDeleteModal}
           variant="outlined"
@@ -282,14 +271,24 @@ function JobDetails() {
             fontSize: "14px",
             fontWeight: 600,
             maxWidth: { sm: "200px" },
-          }}
-        >
+          }}>
           Delete
         </Button>
 
         <Button
           variant="contained"
           fullWidth
+          onClick={() =>
+            nav(
+              `/editJob/${
+                jobData.jobType.includes("platform")
+                  ? "platform"
+                  : jobData.jobType.includes("direct")
+                  ? "direct"
+                  : "remote"
+              }/${jobId}`
+            )
+          }
           sx={{
             backgroundColor: theme.palette.primary.main,
             height: "40px",
@@ -303,8 +302,7 @@ function JobDetails() {
             "&:hover": {
               backgroundColor: theme.palette.primary.sec,
             },
-          }}
-        >
+          }}>
           Edit
         </Button>
       </Stack>

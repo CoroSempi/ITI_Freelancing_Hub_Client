@@ -1,9 +1,11 @@
 import React from "react";
 import { Box, Link, Stack, Typography, useTheme } from "@mui/material";
 import Prices from "./Prices";
+import { useNavigate } from "react-router-dom";
 
 export default function JobCard({ job }) {
   const theme = useTheme();
+  const nav = useNavigate();
   return (
     <Box
       sx={{
@@ -11,7 +13,7 @@ export default function JobCard({ job }) {
         alignItems: "center",
         backgroundColor: theme.palette.background.card,
         minWidth: { xs: "100%", xl: "30%" },
-        maxWidth: { xs: "100%", xl: "33.33%" },
+        maxWidth: { xs: "100%", xl: "33%" },
         height: { xs: "250px", sm: "270px" },
         flex: 1,
         position: "relative",
@@ -22,16 +24,28 @@ export default function JobCard({ job }) {
         justifyContent={"center"}
         alignItems={"center"}
         direction={"row"}
-        sx={{ position: "absolute", bottom: "15px", right: "15px" }}
+        sx={{
+          position: "absolute",
+          bottom: "15px",
+          right: "15px",
+        }}
         spacing={1}>
-        <a color={theme.palette.primary.sec}>
-          <Typography
-            fontWeight={550}
-            sx={{ cursor: "pointer", fontSize: { xs: "12px", sm: "15px" } }}
-            color="inherit">
-            Read More
-          </Typography>
-        </a>
+        <Typography
+          onClick={() => {
+            nav(`/jobDetails/${job.jobData._id}`);
+          }}
+          fontWeight={550}
+          sx={{
+            zIndex: 1,
+            cursor: "pointer",
+
+            textAlign: "center",
+            fontSize: { xs: "12px", sm: "15px" },
+          }}
+          color={theme.palette.primary.iti}>
+          Read More
+        </Typography>
+
         <Typography
           fontWeight={550}
           sx={{ cursor: "pointer", fontSize: { xs: "12px", sm: "15px" } }}

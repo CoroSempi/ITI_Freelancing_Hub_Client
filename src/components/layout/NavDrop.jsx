@@ -9,9 +9,11 @@ import { Typography, useTheme } from "@mui/material";
 import { headerLocalization } from "../../StaticData/Localization";
 
 import SettingsDrawer from "../settings/SettingsDrawer";
+import { useNavigate } from "react-router-dom";
 
 export default function NavDrop() {
   const theme = useTheme();
+  const nav = useNavigate();
   const { lang } = useContext(LocalizationProvider);
   const [settingsOpen, setSettingsOpen] = useState(false);
 
@@ -57,7 +59,7 @@ export default function NavDrop() {
         </MenuItem>
         <MenuItem></MenuItem>
 
-        <MenuItem>
+        <MenuItem onClick={() => nav("/choosejob")}>
           <Typography
             sx={{
               fontFamily: lang == "ar" ? "ShamelBold" : "",
@@ -66,7 +68,7 @@ export default function NavDrop() {
             {headerLocalization[lang].addNewJob}
           </Typography>
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={() => nav("/addCertificate")}>
           <Typography
             sx={{
               fontFamily: lang == "ar" ? "ShamelBold" : "",

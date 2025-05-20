@@ -12,6 +12,7 @@ export default function NavBar() {
   const location = useLocation();
   const { lang } = useContext(LocalizationProvider);
   let home = location.pathname.split(" ").includes("/");
+  let learn = location.pathname.split(" ").includes("learnMore");
 
   return (
     <>
@@ -19,7 +20,6 @@ export default function NavBar() {
         sx={{
           justifyContent: "space-between",
           alignItems: "center",
-          // width: "30%",
           minWidth: lang == "en" ? "350px" : "400px",
           maxWidth: lang == "en" ? "350px" : "400px",
           fontSize: "17px",
@@ -43,7 +43,7 @@ export default function NavBar() {
         </div>
         <Link
           style={{
-            color: home ? "inherit" : theme.palette.primary.iti,
+            color: "inherit",
             fontFamily: lang == "ar" ? "ShamelBold" : "",
             fontSize: lang == "ar" ? "15px" : "",
           }}

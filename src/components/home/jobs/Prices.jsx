@@ -33,7 +33,7 @@ export default function Prices({ usd }) {
           fontWeight={550}
           fontSize={{ xs: 12, sm: 15 }}
           color={theme.palette.primary.main}>
-          {usd * 50.59}
+          {usd * 50}
         </Typography>
       </Stack>
     </Stack>

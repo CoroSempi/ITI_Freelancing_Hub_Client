@@ -153,6 +153,7 @@ export const headerLocalization = {
     home: "Home",
     chats: "Chats",
     addNewJob: "Add New Job",
+    addNewCertificate: "Add New Certificate",
     certificate: "Add New Certificate",
     notification: "Notification",
     settings: "Settings",
@@ -168,6 +169,7 @@ export const headerLocalization = {
     home: "الصفحة الرئيسية",
     chats: "المحادثات",
     addNewJob: "إضافة عمل جديدة",
+    addNewCertificate: "إضافة شهادة جديدة",
     certificate: "إضافة شهادة جديدة",
     notification: "الإشعارات",
     settings: "الإعدادات",
@@ -396,7 +398,8 @@ export const chooseJobLocalization = {
 export const deleteModalLocalization = {
   en: {
     title: "Deletion Confirmation",
-    message: "Are you sure you want to delete this {item}? This action cannot be undone, and all associated data will be permanently removed.",
+    message:
+      "Are you sure you want to delete this {item}? This action cannot be undone, and all associated data will be permanently removed.",
     job: "job",
     certificate: "certificate",
     cancel: "Cancel",
@@ -404,7 +407,8 @@ export const deleteModalLocalization = {
   },
   ar: {
     title: "تأكيد الحذف",
-    message: "هل أنت متأكد أنك تريد حذف {item}؟ هذا الإجراء لا يمكن التراجع عنه، وسيتم حذف جميع البيانات المرتبطة نهائيًا.",
+    message:
+      "هل أنت متأكد أنك تريد حذف {item}؟ هذا الإجراء لا يمكن التراجع عنه، وسيتم حذف جميع البيانات المرتبطة نهائيًا.",
     job: "الوظيفة",
     certificate: "الشهادة",
     cancel: "إلغاء",

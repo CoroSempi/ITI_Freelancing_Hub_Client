@@ -16,11 +16,10 @@ import LocalizationContext from "../../context/localizationContext";
 import { chooseJobLocalization } from "../../StaticData/Localization";
 import { useTheme } from "@mui/material/styles";
 
-
 function ChooseJob() {
   const navigate = useNavigate();
-  const theme = useTheme(); 
-   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const { lang } = useContext(LocalizationContext);
   const localization = chooseJobLocalization[lang];
@@ -34,17 +33,15 @@ function ChooseJob() {
   };
 
   function handleForm() {
-    navigate(`/choosejob/${choice}`);
+    navigate(`/addNewJob/${choice}`);
   }
 
   return (
     <Box
       sx={{
-        margin: { xs: "70px 30px", md: "80px 30px" },
+        margin: { xs: "60px 15px", md: "100px 30px" },
         direction: lang === "ar" ? "rtl" : "ltr",
-      
-      }}
-    >
+      }}>
       <Typography
         variant="h5"
         fontWeight="bold"
@@ -52,10 +49,8 @@ function ChooseJob() {
         sx={{
           fontFamily: lang === "en" ? "" : "ShamelBold",
           color: theme.palette.primary.main,
-           marginTop:isMobile?"30px":""
-        }}
-
-      >
+          marginTop: isMobile ? "30px" : "",
+        }}>
         {localization.addJob}
       </Typography>
 
@@ -66,8 +61,7 @@ function ChooseJob() {
           fontWeight="bold"
           color="primary"
           gutterBottom
-          sx={{ fontFamily: lang === "en" ? "" : "ShamelBold" }}
-        >
+          sx={{ fontFamily: lang === "en" ? "" : "ShamelBold" }}>
           {localization.chooseType}
         </Typography>
       </Grid>
@@ -90,12 +84,11 @@ function ChooseJob() {
               }
               label={
                 <Typography
-                color="primary"
+                  color="primary"
                   sx={{
-                    fontFamily: lang === "en" ? "" : "ShamelBold",
+                    fontFamily: lang === "en" ? "" : "Shamel",
                     // color: "#000",
-                  }}
-                >
+                  }}>
                   {type.label}
                 </Typography>
               }
@@ -103,47 +96,44 @@ function ChooseJob() {
           ))}
         </RadioGroup>
       </FormControl>
-      
 
-  <Stack
-  direction={{ xs: "column-reverse", sm: "row" }}
-  // spacing={2}
-  sx={{
-    my: 2,
-    width: "100%",
-      gap: lang === "ar" ? "15px" : theme.spacing(2)
-  }}
->
-  <Button
-    variant="outlined"
-    fullWidth
-    sx={{
-      height: "40px",
-      fontWeight: 600,
-      borderRadius: "15px",
-      color: theme.palette.primary.iti,
-      border: `1px solid ${theme.palette.primary.iti}`,
-      fontFamily: lang === "en" ? "" : "Shamel",
-      maxWidth: { sm: "200px" }
-    }}
-  >
-    {localization.back}
-  </Button>
-  <Button
-    variant="contained"
-    fullWidth
-    sx={{
-      height: "40px",
-      fontWeight: 600,
-      borderRadius: "15px",
-      fontFamily: lang === "en" ? "" : "Shamel",
-      maxWidth: { sm: "200px" }
-    }}
-    onClick={handleForm}
-  >
-    {localization.next}
-  </Button>
-</Stack>
+      <Stack
+        direction={{ xs: "column-reverse", sm: "row" }}
+        sx={{
+          my: 2,
+          width: "100%",
+          gap: lang === "ar" ? "15px" : theme.spacing(2),
+        }}>
+        <Button
+          onClick={() => navigate(-1)}
+          variant="outlined"
+          fullWidth
+          sx={{
+            height: "50px",
+            fontWeight: 600,
+            borderRadius: "15px",
+            color: theme.palette.primary.iti,
+            border: `1px solid ${theme.palette.primary.iti}`,
+            fontFamily: lang === "en" ? "" : "Shamel",
+            maxWidth: { sm: "200px" },
+          }}>
+          {localization.back}
+        </Button>
+        <Button
+          disabled={!choice}
+          variant="contained"
+          fullWidth
+          sx={{
+            height: "50px",
+            fontWeight: 600,
+            borderRadius: "15px",
+            fontFamily: lang === "en" ? "" : "Shamel",
+            maxWidth: { sm: "200px" },
+          }}
+          onClick={handleForm}>
+          {localization.next}
+        </Button>
+      </Stack>
 
       <Typography
         color="textSecondary"
@@ -151,12 +141,11 @@ function ChooseJob() {
           mt: 5,
           fontFamily: lang === "en" ? "" : "ShamelBold",
           color: theme.palette.primary.sec,
-        }}
-      >
+        }}>
         {localization.instructions}
       </Typography>
 
-      <Box sx={{ mt: 4, width: isMobile?"100%":"60%"  }}>
+      <Box sx={{ mt: 4, width: isMobile ? "100%" : "60%" }}>
         {localization.types.map((type) => (
           <Typography
             key={type.id}
@@ -165,9 +154,8 @@ function ChooseJob() {
               mb: 4,
               fontFamily: lang === "en" ? "" : "Shamel",
               color: theme.palette.primary.sec,
-            }}
-          >
-            • <strong>{type.label}</strong>: {type.description}
+            }}>
+            • <strong>{type.label}</strong> : {type.description}
           </Typography>
         ))}
       </Box>

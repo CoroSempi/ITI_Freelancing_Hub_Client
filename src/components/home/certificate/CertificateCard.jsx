@@ -1,8 +1,10 @@
 import React from "react";
 import { Box, Link, Stack, Typography, useTheme } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function CertificateCard({ certificate, name }) {
   const theme = useTheme();
+  const nav = useNavigate();
 
   return (
     <Box
@@ -11,8 +13,8 @@ export default function CertificateCard({ certificate, name }) {
         alignItems: "center",
         backgroundColor: theme.palette.background.card,
         minWidth: { xs: "100%", xl: "30%" },
-        maxWidth: { xs: "100%", xl: "33.33%" },
-        height: {xs:"230px",sm:"270px"},
+        maxWidth: { xs: "100%", xl: "33%" },
+        height: { xs: "230px", sm: "270px" },
         flex: 1,
         position: "relative",
         pl: 1,
@@ -20,6 +22,9 @@ export default function CertificateCard({ certificate, name }) {
       }}>
       <a color={theme.palette.primary.sec}>
         <Typography
+          onClick={() => {
+            nav(`/certificateDetails/${certificate._id}`);
+          }}
           fontWeight={550}
           sx={{
             cursor: "pointer",

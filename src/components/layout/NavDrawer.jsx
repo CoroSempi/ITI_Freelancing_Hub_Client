@@ -34,8 +34,8 @@ export default function NavDrawer({ open, navDrawer }) {
 
   const navItems = [
     "home",
-    "chats",
     "addNewJob",
+    "addNewCertificate",
     "settings",
     "about",
     "signOut",
@@ -87,6 +87,10 @@ export default function NavDrawer({ open, navDrawer }) {
                   ? () => handleSignOut()
                   : item === "home"
                   ? () => nav("/")
+                  : item === "addNewJob"
+                  ? () => nav("/choosejob")
+                  : item == "addNewCertificate"
+                  ? () => nav("/addCertificate")
                   : () => nav(`/${item}`)
               }>
               <Typography fontFamily={isArabic ? "Shamel" : "inherit"}>

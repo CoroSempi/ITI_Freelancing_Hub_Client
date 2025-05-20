@@ -127,7 +127,7 @@ export default function EditProfile({ setEditProfile, editProfile }) {
                 style={{ display: "none" }}
                 onChange={handleImageChange}
               />
-              <img height="24px" src="pen.svg" alt="Edit Avatar" />
+              <img height="24px" src="/pen.svg" alt="Edit Avatar" />
             </label>
           </Box>
         </Box>
