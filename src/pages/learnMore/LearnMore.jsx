@@ -1,8 +1,11 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography, IconButton } from "@mui/material";
 import React from "react";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import LocalizationContext from "../../context/localizationContext";
 import { learnMoreLocalization } from "../../StaticData/Localization";
 import { useTheme } from "@mui/material/styles";
@@ -21,16 +24,21 @@ export default function TwoPartContainer() {
     setActiveSlide(index);
   };
 
+  const goToNextSlide = () => {
+    const nextSlide = (activeSlide + 1) % localization[lang].slides.length;
+    setActiveSlide(nextSlide);
+  };
+
+  const goToPrevSlide = () => {
+    const prevSlide =
+      activeSlide === 0
+        ? localization[lang].slides.length - 1
+        : activeSlide - 1;
+    setActiveSlide(prevSlide);
+  };
+
   return (
     <Box sx={{ marginRight: "30px", marginLeft: "30px", height: "100vh" }}>
-      {/* <Button
-        variant="text"
-        onClick={() => nav(-1)}
-        sx={{ padding: "30px", color: "#D7777B", fontWeight: "600" }}
-      >
-        <ArrowBackIosIcon /> {localization[lang].back}
-      </Button> */}
-
       <Grid
         container
         spacing={{ xs: 2, md: 4 }}
@@ -45,6 +53,7 @@ export default function TwoPartContainer() {
             variant="text"
             onClick={() => nav(-1)}
             sx={{
+               fontFamily: lang === "en" ? "" : "Shamel",
               marginTop: isMobile ? "40px" : "-10px",
               color: "#D7777B",
               fontWeight: "600",
@@ -107,8 +116,42 @@ export default function TwoPartContainer() {
                 borderRadius: "10px",
                 background: "#F6F6F6",
                 mb: 4,
+                position: "relative",
               }}
             >
+              <IconButton
+                onClick={goToPrevSlide}
+                sx={{
+                 
+                  position: "absolute",
+                  left: "10px",
+                  top: "50%",
+                   transform: lang === "ar" ? "rotate(180deg)" : "none",
+                }}
+              >
+                {lang === "ar" ? (
+                  <KeyboardArrowRightIcon />
+                ) : (
+                  <KeyboardArrowLeftIcon />
+                )}
+              </IconButton>
+
+              <IconButton
+                onClick={goToNextSlide}
+                sx={{
+                  position: "absolute",
+                  right: "10px",
+                  top: "50%",
+                  transform: lang === "ar" ? "rotate(180deg)" : "none",
+                }}
+              >
+                {lang === "ar" ? (
+                  <KeyboardArrowLeftIcon />
+                ) : (
+                  <KeyboardArrowRightIcon />
+                )}
+              </IconButton>
+
               <Box
                 sx={{ p: { xs: 3, md: 4 } }}
                 backgroundColor={theme.palette.background.card}
@@ -120,6 +163,7 @@ export default function TwoPartContainer() {
                     fontSize: { xs: "18px", md: "20px" },
                     fontWeight: 600,
                     mb: 2,
+                  
                   }}
                 >
                   {localization[lang].slides[activeSlide].title}
@@ -174,12 +218,12 @@ export default function TwoPartContainer() {
           </div>
         </Grid>
 
-        <Grid size={{ sm: 12, md: 6 }}>
+        <Grid size={{sm: 12, md: 6 }}>
           <Box
             sx={{
               justifyContent: "center",
               alignItems: "start",
-              display: isMobile ? "none" : "flex",
+              display: isMobile ? "flex" : "flex",
             }}
           >
             <img src="/Group 439.svg" alt="Background shape" />

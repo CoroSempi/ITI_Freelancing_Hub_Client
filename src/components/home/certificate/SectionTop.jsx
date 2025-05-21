@@ -1,9 +1,13 @@
 import { Box, Stack, Typography, useTheme } from "@mui/material";
 import React from "react";
+import  { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import LocalizationContext from "../../../context/localizationContext";
+
 export default function SectionTop() {
   const theme = useTheme();
    const navigate =useNavigate()
+     const { lang } = useContext(LocalizationContext);
   return (
     <Box
       sx={{
@@ -12,6 +16,7 @@ export default function SectionTop() {
         alignItems: "center",
         width: "100%",
         maxWidth: "400px",
+        //  direction: lang === "ar" ? "rtl" : "ltr",
       }}>
       <Stack
         direction={"row"}
@@ -32,7 +37,9 @@ export default function SectionTop() {
           fontSize={{ xs: "20px", sm: "25px" }}
           fontWeight={550}
           color={theme.palette.primary.main}>
-          Certificates
+           {lang === "en"
+            ? "Certificates"
+            : "الشهادات"}
         </Typography>
       </Stack>
 
@@ -47,7 +54,10 @@ export default function SectionTop() {
           cursor: "pointer",
           fontWeight: "bold",
         }}>
-        Add New certificates
+        {lang === "en"
+            ? "Add New Certificate"
+            :"إضافة شهادة جديدة"
+}
       </button>
     </Box>
   );

@@ -18,7 +18,7 @@ import CountrySelect from "./CountrySelect";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getJob, addRemote, updateRemote } from "../../../redux/slices/remote";
-
+import { remoteFormLocalization } from "../../../StaticData/Localization";
 import AddedModal from "../addedModal";
 
 export default function Remote({ id }) {
@@ -28,6 +28,8 @@ export default function Remote({ id }) {
   const { loading } = useSelector((state) => state.remote);
   const [modal, setModal] = useState(false);
   const nav = useNavigate();
+  const localization = remoteFormLocalization[lang];
+
   const {
     register,
     handleSubmit,
@@ -124,11 +126,15 @@ export default function Remote({ id }) {
   return (
     <Stack width="100%">
       <Stack
-        sx={{ direction: lang === "ar" ? "rtl" : "ltr" }}
+        sx={{
+          direction: lang === "ar" ? "rtl" : "ltr",
+          gap: lang === "ar" ? 1 : 0,
+        }}
         direction="row"
         spacing={1}
         my={3}
-        alignItems="center">
+        alignItems="center"
+      >
         <Box
           sx={{
             width: "8px",
@@ -141,43 +147,46 @@ export default function Remote({ id }) {
           fontFamily={lang === "ar" ? "ShamelBold" : ""}
           fontSize={lang === "ar" ? "16px" : "20px"}
           fontWeight={550}
-          color={theme.palette.primary.main}>
-          {lang === "en" ? "Remote monthly job" : "عمل شهري عن بعد"}
+          color={theme.palette.primary.main}
+        >
+          {localization.title}
         </Typography>
       </Stack>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid
           container
           spacing={2}
-          sx={{ width: "100%", px: { xs: 0, md: 2 } }}>
+          sx={{ width: "100%", px: { xs: 0, md: 2 } }}
+        >
           <Grid item size={{ xs: 12, lg: 6 }}>
             <TextInput
               register={register}
               name="jobTitle"
-              placeholder="Job Title"
+              placeholder={localization.jobTitle.placeholder}
               fullWidth
-              required="Required"
-              desc="Ensure that the title clearly describes the Job."
+              required={localization.jobTitle.required}
+              desc={localization.jobTitle.desc}
             />
             <TextInput
               register={register}
               name="jobDescription"
-              placeholder="Job Description"
+              placeholder={localization.jobDescription.placeholder}
               fullWidth
-              required="Required"
-              desc={"Ensure that the description clearly describes the Job."}
+              required={localization.jobDescription.required}
+              desc={localization.jobDescription.desc}
             />
 
             <Stack
               direction={"row"}
               sx={{ marginBottom: "30px", gap: { xs: 1, md: 3 } }}
-              spacing={1}>
+              spacing={1}
+            >
               <DateInput
                 register={register}
                 name="startDate"
-                placeholder="Start Date"
+                placeholder={localization.startDate.placeholder}
                 fullWidth
-                required="Required"
+                required={localization.startDate.required}
               />
             </Stack>
 
@@ -185,16 +194,16 @@ export default function Remote({ id }) {
               <CostInput
                 register={register}
                 name="paymentInUSD"
-                placeholder="Payment in USD"
-                required="Required"
+                placeholder={localization.paymentInUSD.placeholder}
+                required={localization.paymentInUSD.required}
                 value={paymentInUSD}
                 onChange={(e) => setValue("paymentInUSD", e.target.value)}
               />
               <CostInput
                 register={register}
                 name="paymentInEGP"
-                placeholder="Payment in EGP"
-                required="Auto Generated"
+                placeholder={localization.paymentInEGP.placeholder}
+                required={localization.paymentInEGP.required}
                 value={(parseFloat(paymentInUSD) * 50 || 0).toFixed(2)}
                 onChange={() => {}}
               />
@@ -205,33 +214,33 @@ export default function Remote({ id }) {
             <TextInput
               register={register}
               name="companytName"
-              placeholder="Company Name"
+              placeholder={localization.companyName.placeholder}
               fullWidth
-              required="Required"
+              required={localization.companyName.required}
             />
 
             <CountrySelect
-              placeholder="Company Country"
+              placeholder={localization.companyCountry.placeholder}
               register={register}
               name="companyCountry"
-              required="Required"
+              required={localization.companyCountry.required}
               watch={watch}
             />
             <TextInput
               register={register}
               name="companyContact"
-              placeholder="Company Contact"
+              placeholder={localization.companyContact.placeholder}
               fullWidth
-              required="Required"
-              desc="Make sure the contact information is up-to-date and accurate."
+              required={localization.companyContact.required}
+              desc={localization.companyContact.desc}
             />
             <TextInput
               register={register}
               name="proofOfWork"
-              placeholder="Proof of Work"
+              placeholder={localization.proofOfWork.placeholder}
               fullWidth
-              required="Required"
-              desc="Prepare a PDF document that includes screenshots of communication with the company (such as emails, chat messages, or meeting summaries), examples or summaries of the work you performed remotely, and proof of payment such as salary slips, bank transfer confirmations, or invoices. Once you have compiled all the materials into a single PDF, upload it to Google Drive, copy the sharing link, and paste it here. Make sure the link is set to “Anyone with the link can view” so the admin team can access and review it."
+              required={localization.proofOfWork.required}
+              desc={localization.proofOfWork.desc}
             />
           </Grid>
         </Grid>
@@ -243,7 +252,8 @@ export default function Remote({ id }) {
             my: 2,
             width: "100%",
             gap: lang === "ar" ? "15px" : theme.spacing(2),
-          }}>
+          }}
+        >
           <Button
             onClick={() => nav(-1)}
             variant="outlined"
@@ -256,8 +266,9 @@ export default function Remote({ id }) {
               border: `1px solid ${theme.palette.primary.iti}`,
               fontFamily: lang === "en" ? "" : "Shamel",
               maxWidth: { sm: "400px" },
-            }}>
-            Back
+            }}
+          >
+            {localization.buttons.back}
           </Button>
           <Button
             disabled={!isValid}
@@ -270,8 +281,15 @@ export default function Remote({ id }) {
               borderRadius: "15px",
               fontFamily: lang === "en" ? "" : "Shamel",
               maxWidth: { sm: "400px" },
-            }}>
-            {loading ? <CircularProgress size={24} /> : id ? "Update" : "Add"}
+            }}
+          >
+            {loading ? (
+              <CircularProgress size={24} />
+            ) : id ? (
+              localization.buttons.update
+            ) : (
+              localization.buttons.add
+            )}
           </Button>
         </Stack>
       </form>

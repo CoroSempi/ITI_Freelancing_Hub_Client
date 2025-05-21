@@ -1,25 +1,30 @@
 import { Box, Stack, Typography, useTheme } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import LocalizationContext from "../../../context/localizationContext";
 
 export default function SectionTop() {
   const theme = useTheme();
-   const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { lang } = useContext(LocalizationContext);
+
   return (
     <Box
       sx={{
-     
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
         width: "100%",
         maxWidth: "400px",
-      }}>
+        // direction: lang === "ar" ? "rtl" : "ltr",
+      }}
+    >
       <Stack
         direction={"row"}
         spacing={1}
         justifyContent={"center"}
-        alignItems={"center"}>
+        alignItems={"center"}
+      >
         <div
           style={{
             width: "8px",
@@ -27,18 +32,22 @@ export default function SectionTop() {
             borderRadius: "10px 0px 10px 0px",
             backgroundColor: theme.palette.primary.iti,
             color: theme.palette.primary.iti,
-          }}>
+          }}
+        >
           .
         </div>
         <Typography
           fontSize={{ xs: "20px", sm: "25px" }}
           fontWeight={550}
-          color={theme.palette.primary.main}>
-          Freelancing Jobs
+          color={theme.palette.primary.main}
+        >
+          {lang === "en"
+            ? "Freelancing Jobs"
+            : "وظائف العمل الحر"}
         </Typography>
       </Stack>
       <button
-      onClick={() => navigate("/choosejob")}
+        onClick={() => navigate("/choosejob")}
         style={{
           border: "0.5px solid #44B40D",
           padding: "10px 20px",
@@ -47,8 +56,12 @@ export default function SectionTop() {
           color: "#44B40D",
           cursor: "pointer",
           fontWeight: "bold",
-        }}>
-        Add New Job
+        }}
+      >
+       {lang === "en"
+            ? "Add New Job"
+            :"إضافة وظيفه جديدة"
+}
       </button>
     </Box>
   );

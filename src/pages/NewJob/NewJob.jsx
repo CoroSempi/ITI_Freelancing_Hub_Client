@@ -25,7 +25,7 @@ export default function NewJob() {
           fontFamily: lang === "en" ? "" : "ShamelBold",
           color: theme.palette.primary.main,
         }}>
-        {lang === "en" ? "Add New Job" : "اضافة عمل جديدة"}
+        {lang === "en" ? "Add New Job" : "اضافة عمل جديد"}
       </Typography>
 
       {type == "platform" && <Platform id={id} />}

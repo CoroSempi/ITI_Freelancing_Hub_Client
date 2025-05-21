@@ -1,8 +1,13 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import React from "react";
+import LocalizationContext from "../../context/localizationContext";
+import { useContext } from "react";
+import { congratsLocalization } from "../../StaticData/Localization";
 
 export default function Congrats() {
   const theme = useTheme();
+  const { lang } = useContext(LocalizationContext);
+  const localization = congratsLocalization[lang];
+
   return (
     <Box
       sx={{
@@ -13,15 +18,15 @@ export default function Congrats() {
         alignItems: { xs: "start", sm: "center" },
         backgroundColor: { xs: theme.palette.background.card, sm: "inherit" },
         borderRadius: "10px",
-      }}>
+      }}
+    >
       <img height={60} src="/congrats.svg" alt="" />
       <Typography
         fontSize={{ xs: "13px", sm: "17px" }}
-        color={theme.palette.primary.sec}>
-        Congratulations on reaching your target! We are incredibly proud of you
-        and your hard work! This is a fantastic achievement, and we want you to
-        take a moment to celebrate your success. Keep shining and moving
-        forward, you’re doing great!
+        fontFamily={lang === "en" ? "" : "Shamel"}
+        color={theme.palette.primary.sec}
+      >
+        {localization.message}
       </Typography>
     </Box>
   );
