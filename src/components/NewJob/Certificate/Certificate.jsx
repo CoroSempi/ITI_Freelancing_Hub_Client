@@ -12,12 +12,9 @@ import LocalizationProvider from "../../../context/localizationContext";
 import TextInput from "../TextInput";
 import { useForm } from "react-hook-form";
 import DateInput from "../DateInput";
-
 import { useState } from "react";
-
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
 import AddedModal from "../addedModal";
 import ApprochSelect from "./ApprochSelect";
 import {
@@ -25,6 +22,7 @@ import {
   getCertificate,
   updateCertificate,
 } from "../../../redux/slices/certificate";
+import { certificateFormLocalization } from "../../../StaticData/Localization";
 
 export default function Certificate({ id }) {
   const { lang } = useContext(LocalizationProvider);
@@ -33,11 +31,13 @@ export default function Certificate({ id }) {
   const { loading } = useSelector((state) => state.remote);
   const [modal, setModal] = useState(false);
   const nav = useNavigate();
+  const localization = certificateFormLocalization[lang];
+
   const {
     register,
     handleSubmit,
     setValue,
-    control,
+    // control,
     watch,
     formState: { isValid },
   } = useForm({
@@ -50,6 +50,7 @@ export default function Certificate({ id }) {
       startDate: "",
       endDate: "",
       proofOfCertificate: "",
+      proofOfWork: "",
     },
   });
 
@@ -64,12 +65,13 @@ export default function Certificate({ id }) {
       const certificate = await dispatch(getCertificate(id)).unwrap();
       console.log(certificate);
       setValue("certificateId", certificate.certificateId);
-      setValue("certificateDescription", job.certificateDescription);
+      setValue("certificateDescription", certificate.certificateDescription);
       setValue("Company", certificate.Company);
       setValue("approach", certificate.approach);
       setValue("startDate", certificate.startDate);
       setValue("endDate", certificate.endDate);
       setValue("proofOfCertificate", certificate.proofOfCertificate);
+      setValue("proofOfWork", certificate.proofOfWork);
     }
   }
 
@@ -107,15 +109,19 @@ export default function Certificate({ id }) {
     <Stack
       sx={{
         margin: { xs: "80px 15px", md: "80px 30px" },
-
         direction: lang === "ar" ? "rtl" : "ltr",
-      }}>
+      }}
+    >
       <Stack
-        sx={{ direction: lang === "ar" ? "rtl" : "ltr" }}
+        sx={{
+          direction: lang === "ar" ? "rtl" : "ltr",
+          gap: lang === "ar" ? 1 : 0,
+        }}
         direction="row"
         spacing={1}
         my={3}
-        alignItems="center">
+        alignItems="center"
+      >
         <Box
           sx={{
             width: "8px",
@@ -128,53 +134,54 @@ export default function Certificate({ id }) {
           fontFamily={lang === "ar" ? "ShamelBold" : ""}
           fontSize={lang === "ar" ? "16px" : "20px"}
           fontWeight={550}
-          color={theme.palette.primary.main}>
-          {lang === "en" ? "Add New Certificate" : "اضافة شهادة جديدة"}
+          color={theme.palette.primary.main}
+        >
+          {localization.title}
         </Typography>
       </Stack>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid
           container
           spacing={2}
-          sx={{ width: "100%", px: { xs: 0, md: 2 } }}>
+          sx={{ width: "100%", px: { xs: 0, md: 2 } }}
+        >
           <Grid item size={{ xs: 12, lg: 6 }}>
             <TextInput
               register={register}
               name="certificateId"
-              placeholder="Certificate ID"
+              placeholder={localization.certificateId.placeholder}
               fullWidth
-              required="Required"
-              desc="Ensure that the Certificate ID is Right."
+              required={localization.certificateId.required}
+              desc={localization.certificateId.desc}
             />
             <TextInput
               register={register}
               name="certificateDescription"
-              placeholder="Certificate Description"
+              placeholder={localization.certificateDescription.placeholder}
               fullWidth
-              required="Required"
-              desc={
-                "Ensure that the description clearly describes the certificate."
-              }
+              required={localization.certificateDescription.required}
+              desc={localization.certificateDescription.desc}
             />
 
             <Stack
               direction={"row"}
               sx={{ marginBottom: "30px", gap: { xs: 1, md: 3 } }}
-              spacing={1}>
+              spacing={1}
+            >
               <DateInput
                 register={register}
                 name="startDate"
-                placeholder="Start Date"
+                placeholder={localization.startDate.placeholder}
                 fullWidth
-                required="Required"
+                required={localization.startDate.required}
               />
 
               <DateInput
                 register={register}
                 name="endDate"
-                placeholder="End Date"
+                placeholder={localization.endDate.placeholder}
                 fullWidth
-                required="Required"
+                required={localization.endDate.required}
               />
             </Stack>
           </Grid>
@@ -183,36 +190,34 @@ export default function Certificate({ id }) {
             <TextInput
               register={register}
               name="Company"
-              placeholder="Company Name"
+              placeholder={localization.company.placeholder}
               fullWidth
-              required="Required"
+              required={localization.company.required}
             />
 
             <ApprochSelect
               register={register}
               name="approach"
-              placeholder="Course Approach"
+              placeholder={localization.approach.placeholder}
               fullWidth
-              required="Required"
+              required={localization.approach.required}
             />
 
             <TextInput
-              placeholder="Proof of Certificate"
+              placeholder={localization.proofOfCertificate.placeholder}
               register={register}
               name="proofOfCertificate"
-              required="Required"
+              required={localization.proofOfCertificate.required}
               watch={watch}
-              desc={
-                "Upload a scanned copy of the certificate or a photo of the certificate, all the materials into a single PDF, upload it to Google Drive, copy the sharing link, and paste it here. Make sure the link is set to “Anyone with the link can view” so the admin team can access and review it."
-              }
+              desc={localization.proofOfCertificate.desc}
             />
 
             <TextInput
               register={register}
               name="proofOfWork"
-              placeholder="Proof of Work"
+              placeholder={localization.proofOfWork.placeholder}
               fullWidth
-              required="Required"
+              required={localization.proofOfWork.required}
             />
           </Grid>
         </Grid>
@@ -224,7 +229,8 @@ export default function Certificate({ id }) {
             my: 2,
             width: "100%",
             gap: lang === "ar" ? "15px" : theme.spacing(2),
-          }}>
+          }}
+        >
           <Button
             onClick={() => nav(-1)}
             variant="outlined"
@@ -237,8 +243,9 @@ export default function Certificate({ id }) {
               border: `1px solid ${theme.palette.primary.iti}`,
               fontFamily: lang === "en" ? "" : "Shamel",
               maxWidth: { sm: "400px" },
-            }}>
-            Back
+            }}
+          >
+            {localization.buttons.back}
           </Button>
           <Button
             disabled={!isValid}
@@ -251,8 +258,15 @@ export default function Certificate({ id }) {
               borderRadius: "15px",
               fontFamily: lang === "en" ? "" : "Shamel",
               maxWidth: { sm: "400px" },
-            }}>
-            {loading ? <CircularProgress size={24} /> : id ? "Update" : "Add"}
+            }}
+          >
+            {loading ? (
+              <CircularProgress size={24} />
+            ) : id ? (
+              localization.buttons.update
+            ) : (
+              localization.buttons.add
+            )}
           </Button>
         </Stack>
       </form>

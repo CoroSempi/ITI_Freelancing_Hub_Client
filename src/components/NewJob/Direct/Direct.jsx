@@ -19,7 +19,7 @@ import StudentSelect from "./StudentSelect";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addDirect, getJob, updateDirect } from "../../../redux/slices/direct";
-
+import { directFormLocalization } from "../../../StaticData/Localization";
 import AddedModal from "../addedModal";
 import ContactSelect from "./ContactSelect";
 
@@ -31,6 +31,7 @@ export default function Direct({ id }) {
   const [modal, setModal] = useState(false);
   const nav = useNavigate();
   const [shares, setShares] = useState([]);
+  const localization = directFormLocalization[lang];
 
   const {
     register,
@@ -143,11 +144,15 @@ export default function Direct({ id }) {
   return (
     <Stack width="100%">
       <Stack
-        sx={{ direction: lang === "ar" ? "rtl" : "ltr" }}
+        sx={{
+          direction: lang === "ar" ? "rtl" : "ltr",
+          gap: lang === "ar" ? 1 : 0,
+        }}
         direction="row"
         spacing={1}
         my={3}
-        alignItems="center">
+        alignItems="center"
+      >
         <Box
           sx={{
             width: "8px",
@@ -160,53 +165,54 @@ export default function Direct({ id }) {
           fontFamily={lang === "ar" ? "ShamelBold" : ""}
           fontSize={lang === "ar" ? "16px" : "20px"}
           fontWeight={550}
-          color={theme.palette.primary.main}>
-          {lang === "en"
-            ? "Freelancing job with direct contact"
-            : "عمل حر بتواصل مباشر"}
+          color={theme.palette.primary.main}
+        >
+          {localization.title}
         </Typography>
       </Stack>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid
           container
           spacing={2}
-          sx={{ width: "100%", px: { xs: 0, md: 2 } }}>
+          sx={{ width: "100%", px: { xs: 0, md: 2 } }}
+        >
           <Grid item size={{ xs: 12, lg: 6 }}>
             <TextInput
               register={register}
               name="jobTitle"
-              placeholder="Job Title"
+              placeholder={localization.jobTitle.placeholder}
               fullWidth
-              required="Required"
-              desc="Ensure that the title clearly describes the Job."
+              required={localization.jobTitle.required}
+              desc={localization.jobTitle.desc}
             />
             <TextInput
               register={register}
               name="jobDescription"
-              placeholder="Job Description"
+              placeholder={localization.jobDescription.placeholder}
               fullWidth
-              required="Required"
-              desc={"Ensure that the description clearly describes the Job."}
+              required={localization.jobDescription.required}
+              desc={localization.jobDescription.desc}
             />
 
             <Stack
               direction={"row"}
               sx={{ marginBottom: "30px", gap: { xs: 1, md: 3 } }}
-              spacing={1}>
+              spacing={1}
+            >
               <DateInput
                 register={register}
                 name="startDate"
-                placeholder="Start Date"
+                placeholder={localization.startDate.placeholder}
                 fullWidth
-                required="Required"
+                required={localization.startDate.required}
               />
 
               <DateInput
                 register={register}
                 name="endDate"
-                placeholder="End Date"
+                placeholder={localization.endDate.placeholder}
                 fullWidth
-                required="Required"
+                required={localization.endDate.required}
               />
             </Stack>
 
@@ -214,24 +220,24 @@ export default function Direct({ id }) {
               <CostInput
                 register={register}
                 name="costInUSD"
-                placeholder="Cost in USD"
-                required="Required"
+                placeholder={localization.costInUSD.placeholder}
+                required={localization.costInUSD.required}
                 value={costInUSD}
                 onChange={(e) => setValue("costInUSD", e.target.value)}
               />
               <CostInput
                 register={register}
                 name="costInEGP"
-                placeholder="Cost in EGP"
-                required="Auto Generated"
+                placeholder={localization.costInEGP.placeholder}
+                required={localization.costInEGP.required}
                 value={(parseFloat(costInUSD) * 50 || 0).toFixed(2)}
                 onChange={() => {}}
               />
             </Stack>
 
             <StudentSelect
-              placeholder={"Team members"}
-              required={"optional"}
+              placeholder={localization.teamMembers.placeholder}
+              required={localization.teamMembers.required}
               total={costInUSD - 5}
               shares={shares}
               setShares={setShares}
@@ -241,44 +247,44 @@ export default function Direct({ id }) {
 
           <Grid item size={{ xs: 12, lg: 6 }}>
             <ContactSelect
-              placeholder="Platform"
+              placeholder={localization.platform.placeholder}
               register={register}
               name="platform"
-              required="Required"
+              required={localization.platform.required}
             />
 
             <TextInput
               register={register}
               name="clientName"
-              placeholder="Client Name"
+              placeholder={localization.clientName.placeholder}
               fullWidth
-              required="Required"
+              required={localization.clientName.required}
             />
 
             <CountrySelect
-              placeholder="Client Country"
+              placeholder={localization.clientCountry.placeholder}
               register={register}
               name="clientCountry"
-              required="Required"
+              required={localization.clientCountry.required}
               watch={watch}
             />
 
             <TextInput
               register={register}
               name="clientContact"
-              placeholder="Client Contact"
+              placeholder={localization.clientContact.placeholder}
               fullWidth
-              required="Required"
-              desc="Make sure to include either the client’s profile link on the platform or their contact number."
+              required={localization.clientContact.required}
+              desc={localization.clientContact.desc}
             />
 
             <TextInput
               register={register}
               name="proofOfWork"
-              placeholder="Proof of Work"
+              placeholder={localization.proofOfWork.placeholder}
               fullWidth
-              required="Required"
-              desc="Prepare a PDF document that includes screenshots of chats between you and the client, samples of the work completed, and proof of payment or invoices. Once you've compiled everything into a single PDF, upload it to Google Drive, copy the link, and paste it in here. Make sure the link is set to 'Anyone with the link can view' so that admin can access it."
+              required={localization.proofOfWork.required}
+              desc={localization.proofOfWork.desc}
             />
           </Grid>
         </Grid>
@@ -290,7 +296,8 @@ export default function Direct({ id }) {
             my: 2,
             width: "100%",
             gap: lang === "ar" ? "15px" : theme.spacing(2),
-          }}>
+          }}
+        >
           <Button
             onClick={() => nav(-1)}
             variant="outlined"
@@ -303,8 +310,9 @@ export default function Direct({ id }) {
               border: `1px solid ${theme.palette.primary.iti}`,
               fontFamily: lang === "en" ? "" : "Shamel",
               maxWidth: { sm: "400px" },
-            }}>
-            Back
+            }}
+          >
+            {localization.buttons.back}
           </Button>
           <Button
             disabled={!isValid}
@@ -317,8 +325,15 @@ export default function Direct({ id }) {
               borderRadius: "15px",
               fontFamily: lang === "en" ? "" : "Shamel",
               maxWidth: { sm: "400px" },
-            }}>
-            {loading ? <CircularProgress size={24} /> : id ? "Update" : "Add"}
+            }}
+          >
+            {loading ? (
+              <CircularProgress size={24} />
+            ) : id ? (
+              localization.buttons.update
+            ) : (
+              localization.buttons.add
+            )}
           </Button>
         </Stack>
       </form>

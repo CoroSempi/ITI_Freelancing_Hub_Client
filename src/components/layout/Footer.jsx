@@ -10,11 +10,13 @@ export default function Footer() {
         padding: "20px",
         px: { xs: "10px", lg: "80px" },
         borderTop: "1px solid rgba(167,165,165,0.4)",
-      }}>
+      }}
+    >
       <Stack
         direction={"row"}
         justifyContent={"space-between"}
-        alignItems={"start"}>
+        alignItems={"start"}
+      >
         <Box width={{ xs: 50, sm: 100 }}>
           <img width={"100%"} src="/logo.svg" alt="" />
         </Box>
@@ -23,7 +25,8 @@ export default function Footer() {
           <Typography
             textAlign={{ sm: "center" }}
             fontSize={{ xs: "12px", sm: "17px" }}
-            color={theme.palette.primary.sec}>
+            color={theme.palette.primary.sec}
+          >
             The ITI Freelancing Hub is designed specifically for students who
             have secured their own freelancing jobs. This platform allows
             students to upload the details of their jobs for administrative
@@ -58,8 +61,9 @@ export default function Footer() {
         fontSize={{ xs: "12px", sm: "17px" }}
         textAlign={"center"}
         fontWeight={550}
-        color={"#D7777B"}>
-        © 2025 ITI Freelancing Hub. All rights reserved.
+        color={"#D7777B"}
+      >
+        © {new Date().getFullYear()} ITI Freelancing Hub. All rights reserved.
       </Typography>
     </Stack>
   );

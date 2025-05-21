@@ -1,8 +1,10 @@
 import { Box, Stack, Typography, useTheme } from "@mui/material";
 import React from "react";
-
+import { useContext } from "react";
+import LocalizationContext from "../../context/localizationContext";
 export default function User({ name, avatar }) {
   const theme = useTheme();
+    const { lang } = useContext(LocalizationContext);
   return (
     <Box
       sx={{
@@ -31,7 +33,9 @@ export default function User({ name, avatar }) {
             fontWeight: 550,
           }}
           color={theme.palette.primary.sec}>
-          Welcome Back!
+            {lang === "en"
+            ? "Welcome Back!"
+:"مرحباً بك" }
         </Typography>
         <Typography
           fontSize={"22px"}

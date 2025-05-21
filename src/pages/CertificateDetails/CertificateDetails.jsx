@@ -1,21 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, Chip, Stack, Typography, CircularProgress } from "@mui/material";
+import {
+  Box,
+  Button,
+  Chip,
+  Stack,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { useTheme, useMediaQuery } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import DeleteModal from "../../components/ModalDelete/ModalDelete";
 import axios from "axios";
 
-const baseUrl = "https://iti-freelancing-hub-server.vercel.app/students/certificate/";
+const baseUrl =
+  "https://iti-freelancing-hub-server.vercel.app/students/certificate/";
 
 function CertificateDetails() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const nav = useNavigate();
   const [certificate, setCertificate] = useState(null);
   const { id } = useParams();
   const [open, setOpen] = useState(false);
 
-///fetching
   async function getCertificate(token, certificateId) {
     try {
       const res = await axios.get(`${baseUrl}${certificateId}`, {
@@ -43,7 +52,6 @@ function CertificateDetails() {
     fetchCertificate();
   }, [id]);
 
-////Modal
   function handleOpenDeleteModal() {
     setOpen(true);
   }
@@ -51,7 +59,7 @@ function CertificateDetails() {
   function handleClose() {
     setOpen(false);
   }
-/////loader
+
   if (!certificate) {
     return (
       <Stack
@@ -67,22 +75,27 @@ function CertificateDetails() {
   return (
     <Box
       sx={{
-        margin: { xs: "70px 10px", md: "90px 30px" },
+        margin: { xs: "80px 30px", md: "90px 30px" },
         width: { xs: "90%", md: "60%" },
-         padding: isMobile ? "20px" : "",
       }}
     >
-      <Stack
-        direction="row"
-        alignItems="center"
-        spacing={2}
-        sx={{ color: theme.palette.primary.main }}
+      <Button
+        variant="text"
+        onClick={() => nav("/")}
+        sx={{
+          marginTop: isMobile ? "40px" : "-10px",
+          color: "#D7777B",
+          fontWeight: "600",
+        }}
       >
+        <ArrowBackIosIcon /> Back
+      </Button>
+      <Stack direction="row" alignItems="center" spacing={2} marginTop={3}>
         <Typography
           fontWeight={600}
           sx={{
-            fontFamily: "Poppins",
             fontSize: isMobile ? "18px" : "25px",
+            color: theme.palette.primary.main,
           }}
         >
           {certificate.Company + "'s Certificate"}
@@ -98,37 +111,87 @@ function CertificateDetails() {
       </Stack>
 
       <Typography
+        fontWeight={600}
         sx={{
-          color: "#D7777B",
-          fontFamily: "Poppins",
-          fontSize: "15px",
-          fontWeight: 600,
-          mt: 1,
-          cursor: "pointer",
+          marginTop: "10px",
+          fontSize: isMobile ? "18px" : "22px",
+          color: theme.palette.primary.iti,
         }}
       >
-        {certificate.certificateTitle}
+        {certificate.studentName}
       </Typography>
 
       <Typography
         sx={{
           width: isMobile ? "100%" : "60%",
           color: "#A7A5A5",
-          fontFamily: "Poppins",
-          fontSize: "15px",
-          fontWeight: 500,
-          letterSpacing: "0.3px",
           mt: 2,
         }}
       >
         {certificate.certificateDescription}
       </Typography>
 
+      {certificate.branch && (
+        <Box mt={2}>
+          <Typography
+            sx={{ color: theme.palette.primary.main, fontWeight: 600 }}
+          >
+            Branch:{" "}
+            <Box component="span" fontWeight={400}>
+              {certificate.branch}
+            </Box>
+          </Typography>
+        </Box>
+      )}
+
+      {certificate.Company && (
+        <Box mt={2}>
+          <Typography
+            sx={{ color: theme.palette.primary.main, fontWeight: 600 }}
+          >
+            Company:{" "}
+            <Box component="span" fontWeight={400}>
+              {certificate.Company}
+            </Box>
+          </Typography>
+        </Box>
+      )}
+
+      {certificate.approach && (
+        <Box mt={2}>
+          <Typography
+            sx={{ color: theme.palette.primary.main, fontWeight: 600 }}
+          >
+            Approach:{" "}
+            <Box component="span" fontWeight={400}>
+              {certificate.approach}
+            </Box>
+          </Typography>
+        </Box>
+      )}
+
+      {certificate.proofOfCertificate && (
+        <Box mt={2}>
+          <Typography
+            sx={{ color: theme.palette.primary.main, fontWeight: 600 }}
+          >
+            Proof of Certificate:{" "}
+            <Box component="span" fontWeight={400}>
+              {certificate.proofOfCertificate}
+            </Box>
+          </Typography>
+        </Box>
+      )}
+
       <Stack direction={{ xs: "column", sm: "row" }} spacing={4} mt={3}>
         <Stack direction="row" spacing={1} alignItems="center">
           <CalendarMonthIcon sx={{ color: theme.palette.primary.iti }} />
-          <Typography sx={{color: theme.palette.primary.sec }}>
-            <Box component="span"sx={{color: theme.palette.primary.main }} fontWeight={"bold"}>
+          <Typography sx={{ color: theme.palette.primary.sec }}>
+            <Box
+              component="span"
+              sx={{ color: theme.palette.primary.main }}
+              fontWeight="bold"
+            >
               Start:
             </Box>{" "}
             {certificate.startDate}
@@ -137,9 +200,12 @@ function CertificateDetails() {
 
         <Stack direction="row" spacing={1} alignItems="center">
           <CalendarMonthIcon sx={{ color: theme.palette.primary.iti }} />
-          <Typography sx={{color: theme.palette.primary.sec }}>
-            <Box component="span"  fontWeight={"bold"} sx={{color: theme.palette.primary.main }} >
-               
+          <Typography sx={{ color: theme.palette.primary.sec }}>
+            <Box
+              component="span"
+              fontWeight="bold"
+              sx={{ color: theme.palette.primary.main }}
+            >
               Completion:
             </Box>{" "}
             {certificate.endDate}
@@ -148,29 +214,10 @@ function CertificateDetails() {
       </Stack>
 
       <Box mt={3}>
-        <Typography
-          fontWeight={600}
-          sx={{
-            color: theme.palette.primary.main ,
-            fontFamily: "Poppins",
-            fontSize: "15px",
-   
-            alignSelf: "stretch",
-          }}
-        >
+        <Typography fontWeight={600} sx={{ color: theme.palette.primary.main }}>
           Comments
         </Typography>
-        <Typography
-          sx={{
-            color: "#A7A5A5",
-            fontFamily: "Poppins",
-            fontSize: "12px",
-          
-            fontWeight: 500,
-            letterSpacing: "0.24px",
-            alignSelf: "stretch",
-          }}
-        >
+        <Typography sx={{ color: "#A7A5A5", fontSize: "12px" }}>
           {certificate.comments || "No Comments Yet"}
         </Typography>
       </Box>
@@ -178,11 +225,7 @@ function CertificateDetails() {
       <Stack
         direction={{ xs: "column-reverse", sm: "row" }}
         spacing={2}
-        sx={{
-          my: 2,
-          width: "100%",
-          marginLeft: isMobile ? "10px" : "",
-        }}
+        sx={{ my: 2, width: "100%" }}
       >
         <Button
           variant="outlined"
@@ -193,8 +236,6 @@ function CertificateDetails() {
             borderRadius: "15px",
             color: "#BF272D",
             border: "1px solid #BF272D",
-            fontFamily: "Poppins",
-            fontSize: "14px",
             fontWeight: 600,
             maxWidth: { sm: "200px" },
           }}
@@ -206,29 +247,21 @@ function CertificateDetails() {
           variant="contained"
           fullWidth
           sx={{
-            backgroundColor: theme.palette.primary.main ,
+            backgroundColor: theme.palette.primary.main,
             height: "40px",
             borderRadius: "15px",
             fontWeight: 600,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "10px",
             maxWidth: { sm: "200px" },
-            '&:hover': {
-      backgroundColor: theme.palette.primary.sec, 
-    }
+            "&:hover": {
+              backgroundColor: theme.palette.primary.sec,
+            },
           }}
         >
           Edit
         </Button>
       </Stack>
-      {/* Use the DeleteModal with certificateId prop */}
-      <DeleteModal 
-        open={open} 
-        handleClose={handleClose} 
-        certificateId={id} 
-      />
+
+      <DeleteModal open={open} handleClose={handleClose} certificateId={id} />
     </Box>
   );
 }
