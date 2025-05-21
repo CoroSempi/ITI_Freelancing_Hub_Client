@@ -20,15 +20,24 @@ export default function CostInput({
         width: { xs: "48%", md: "40%" },
         position: "relative",
       }}>
-      <Stack alignItems={"center"} direction={"row"} spacing={1}>
+      <Stack
+        sx={{ gap: lang == "ar" ? 1 : 0 }}
+        alignItems={"center"}
+        direction={"row"}
+        spacing={1}>
         <Typography
           fontWeight={550}
-          fontSize={{ xs: "14px", sm: "18px" }}
+          fontFamily={lang == "ar" ? "ShamelBold" : ""}
+          fontSize={{
+            xs: lang == "ar" ? "12px" : "14px",
+            sm: lang == "ar" ? "14px" : "18px",
+          }}
           color={theme.palette.primary.main}>
           {placeholder}{" "}
         </Typography>
         <Typography
           sx={{
+            fontFamily: lang == "ar" ? "Shamel" : "" ,
             display: { xs: "none", md: "block" },
             fontSize: "13px",
             fontWeight: 500,
@@ -47,6 +56,7 @@ export default function CostInput({
         type="number"
         placeholder={placeholder}
         style={{
+          direction: "ltr",
           margin: "5px 0px",
           fontSize: "17px",
           background: "none",

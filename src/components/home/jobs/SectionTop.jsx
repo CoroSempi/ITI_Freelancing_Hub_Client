@@ -16,15 +16,14 @@ export default function SectionTop() {
         alignItems: "center",
         width: "100%",
         maxWidth: "400px",
-        // direction: lang === "ar" ? "rtl" : "ltr",
-      }}
-    >
+        direction: lang === "ar" ? "rtl" : "ltr",
+      }}>
       <Stack
+        sx={{ gap: lang === "ar" ? 1 : 0 }}
         direction={"row"}
         spacing={1}
         justifyContent={"center"}
-        alignItems={"center"}
-      >
+        alignItems={"center"}>
         <div
           style={{
             width: "8px",
@@ -32,18 +31,18 @@ export default function SectionTop() {
             borderRadius: "10px 0px 10px 0px",
             backgroundColor: theme.palette.primary.iti,
             color: theme.palette.primary.iti,
-          }}
-        >
+          }}>
           .
         </div>
         <Typography
-          fontSize={{ xs: "20px", sm: "25px" }}
+          fontFamily={lang === "en" ? "" : "ShamelBold"}
+          fontSize={{
+            xs: lang === "ar" ? "16px" : "20px",
+            sm: lang === "ar" ? "18px" : "25px",
+          }}
           fontWeight={550}
-          color={theme.palette.primary.main}
-        >
-          {lang === "en"
-            ? "Freelancing Jobs"
-            : "وظائف العمل الحر"}
+          color={theme.palette.primary.main}>
+          {lang === "en" ? "Freelancing Jobs" : "مشاريع العمل الحر"}
         </Typography>
       </Stack>
       <button
@@ -56,12 +55,10 @@ export default function SectionTop() {
           color: "#44B40D",
           cursor: "pointer",
           fontWeight: "bold",
-        }}
-      >
-       {lang === "en"
-            ? "Add New Job"
-            :"إضافة وظيفه جديدة"
-}
+          fontFamily: lang === "en" ? "" : "ShamelBold",
+          fontSize: lang === "ar" ? "10px" : "14px",
+        }}>
+        {lang === "en" ? "Add New Job" : "إضافة مشروع جديدة"}
       </button>
     </Box>
   );

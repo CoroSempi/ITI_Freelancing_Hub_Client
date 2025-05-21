@@ -23,7 +23,6 @@ export const changePassword = createAsyncThunk(
   "auth/changePassword",
   async (body, thunkAPI) => {
     try {
-      console.log(localStorage.getItem("AccessToken"));
       const response = await axios.patch(baseUrl + "changePassword", body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("AccessToken")} `,
@@ -45,7 +44,6 @@ export const authSlice = createSlice({
     signOut: (state) => {
       state.token = null;
       localStorage.removeItem("AccessToken");
-      localStorage.removeItem("studentData");
     },
   },
 
@@ -57,7 +55,6 @@ export const authSlice = createSlice({
       .addCase(tokenExpiration.rejected, (state, action) => {
         state.token = false;
         localStorage.removeItem("AccessToken");
-        localStorage.removeItem("studentData");
       });
 
     builder.addCase(changePassword.fulfilled, (state, action) => {

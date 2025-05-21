@@ -4,7 +4,6 @@ import ListItem from "@mui/material/ListItem";
 import { ListSubheader, Stack, Typography, useTheme } from "@mui/material";
 import { useContext } from "react";
 import LocalizationProvider from "../../context/localizationContext";
-import ControlledSwitches from "./Switch";
 import { settingsLocalization } from "../../StaticData/Localization";
 
 export default function Support({ setChats }) {

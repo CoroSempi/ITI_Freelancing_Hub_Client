@@ -1,6 +1,8 @@
 import React from "react";
 import { Stack, Typography, useTheme } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import LocalizationProvider from "../../../context/localizationContext";
+import { useContext } from "react";
 export default function PlatFormSelect({
   register,
   name,
@@ -10,6 +12,7 @@ export default function PlatFormSelect({
 }) {
   const theme = useTheme();
 
+  const { lang } = useContext(LocalizationProvider);
   const freelancingPlatforms = [
     "Mostaql",
     "Khamsat",
@@ -33,7 +36,11 @@ export default function PlatFormSelect({
     <Stack sx={{ marginBottom: "30px", position: "relative" }}>
       <Typography
         fontWeight={550}
-        fontSize={{ xs: "14px", sm: "18px" }}
+        fontSize={{
+          xs: lang == "ar" ? "12px" : "14px",
+          sm: lang == "ar" ? "14px" : "18px",
+        }}
+        fontFamily={lang == "ar" ? "ShamelBold" : ""}
         color={theme.palette.primary.main}>
         {placeholder}{" "}
         <span
@@ -49,9 +56,10 @@ export default function PlatFormSelect({
       <select
         {...register(name, { required: "Platform is required" })}
         style={{
+          direction: "ltr",
           backgroundColor: theme.palette.primary.iti,
           margin: "5px 0px",
-          fontSize: "17px",
+          fontSize: lang == "ar" ? "12px" : "17px",
           border: "none",
           borderRadius: "15px",
           color: "white",
@@ -61,9 +69,11 @@ export default function PlatFormSelect({
           appearance: "none",
           WebkitAppearance: "none",
           MozAppearance: "none",
+          fontFamily: lang == "ar" ? "ShamelBold" : "",
         }}>
         <option disabled selected value="">
-          Select a platform
+          {" "}
+          {lang == "ar" ? "اختر المنصة" : "Select a platform"}
         </option>
         {freelancingPlatforms.map((platform, index) => (
           <option
@@ -74,6 +84,8 @@ export default function PlatFormSelect({
               backgroundColor: "#fff",
               maxHeight: "200px",
               overflowY: "auto",
+              fontFamily: "Poppins",
+              fontSize: "15px",
             }}>
             {platform}
           </option>

@@ -1,13 +1,9 @@
 import React, { useState, useContext } from "react";
-
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-
 import LocalizationProvider from "../../context/localizationContext";
 import { Typography, useTheme } from "@mui/material";
-
 import { headerLocalization } from "../../StaticData/Localization";
-
 import SettingsDrawer from "../settings/SettingsDrawer";
 import { useNavigate } from "react-router-dom";
 import AiDrawer from "../Ai/AiDrawer";

@@ -4,7 +4,7 @@ import { useContext } from "react";
 import LocalizationContext from "../../context/localizationContext";
 export default function User({ name, avatar }) {
   const theme = useTheme();
-    const { lang } = useContext(LocalizationContext);
+  const { lang } = useContext(LocalizationContext);
   return (
     <Box
       sx={{
@@ -31,11 +31,10 @@ export default function User({ name, avatar }) {
           sx={{
             fontSize: { xs: "13px", sm: "15px" },
             fontWeight: 550,
+            fontFamily: lang === "ar" ? "ShamelBold" : "",
           }}
           color={theme.palette.primary.sec}>
-            {lang === "en"
-            ? "Welcome Back!"
-:"مرحباً بك" }
+          {lang === "en" ? "Welcome Back!" : "مرحباً بك"}
         </Typography>
         <Typography
           fontSize={"22px"}

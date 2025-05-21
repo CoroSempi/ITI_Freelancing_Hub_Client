@@ -68,7 +68,6 @@ export default function Direct({ id }) {
     if (id) {
       const job = await dispatch(getJob(id)).unwrap();
 
-      console.log(job);
       setValue("jobTitle", job.jobTitle);
       setValue("jobDescription", job.jobDescription);
       setValue("startDate", job.startDate);
@@ -95,10 +94,7 @@ export default function Direct({ id }) {
     name: "costInUSD",
   });
 
-  console.log(costInUSD);
-
   useEffect(() => {
-    console.log(shares);
     setValue("teamMembers", shares, { shouldValidate: true });
   }, [shares, setValue]);
 
@@ -151,8 +147,7 @@ export default function Direct({ id }) {
         direction="row"
         spacing={1}
         my={3}
-        alignItems="center"
-      >
+        alignItems="center">
         <Box
           sx={{
             width: "8px",
@@ -165,8 +160,7 @@ export default function Direct({ id }) {
           fontFamily={lang === "ar" ? "ShamelBold" : ""}
           fontSize={lang === "ar" ? "16px" : "20px"}
           fontWeight={550}
-          color={theme.palette.primary.main}
-        >
+          color={theme.palette.primary.main}>
           {localization.title}
         </Typography>
       </Stack>
@@ -174,8 +168,7 @@ export default function Direct({ id }) {
         <Grid
           container
           spacing={2}
-          sx={{ width: "100%", px: { xs: 0, md: 2 } }}
-        >
+          sx={{ width: "100%", px: { xs: 0, md: 2 } }}>
           <Grid item size={{ xs: 12, lg: 6 }}>
             <TextInput
               register={register}
@@ -197,8 +190,7 @@ export default function Direct({ id }) {
             <Stack
               direction={"row"}
               sx={{ marginBottom: "30px", gap: { xs: 1, md: 3 } }}
-              spacing={1}
-            >
+              spacing={1}>
               <DateInput
                 register={register}
                 name="startDate"
@@ -296,8 +288,7 @@ export default function Direct({ id }) {
             my: 2,
             width: "100%",
             gap: lang === "ar" ? "15px" : theme.spacing(2),
-          }}
-        >
+          }}>
           <Button
             onClick={() => nav(-1)}
             variant="outlined"
@@ -310,8 +301,7 @@ export default function Direct({ id }) {
               border: `1px solid ${theme.palette.primary.iti}`,
               fontFamily: lang === "en" ? "" : "Shamel",
               maxWidth: { sm: "400px" },
-            }}
-          >
+            }}>
             {localization.buttons.back}
           </Button>
           <Button
@@ -325,8 +315,7 @@ export default function Direct({ id }) {
               borderRadius: "15px",
               fontFamily: lang === "en" ? "" : "Shamel",
               maxWidth: { sm: "400px" },
-            }}
-          >
+            }}>
             {loading ? (
               <CircularProgress size={24} />
             ) : id ? (

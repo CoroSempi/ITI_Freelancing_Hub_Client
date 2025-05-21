@@ -1,6 +1,8 @@
 import React from "react";
 import { Stack, Typography, useTheme } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import LocalizationProvider from "../../../context/localizationContext";
+import { useContext } from "react";
 export default function ContactSelect({
   register,
   name,
@@ -9,6 +11,8 @@ export default function ContactSelect({
   desc,
 }) {
   const theme = useTheme();
+
+  const { lang } = useContext(LocalizationProvider);
 
   const Contacts = [
     "LinkedIn",
@@ -30,11 +34,16 @@ export default function ContactSelect({
     <Stack sx={{ marginBottom: "30px", position: "relative" }}>
       <Typography
         fontWeight={550}
-        fontSize={{ xs: "14px", sm: "18px" }}
+        fontFamily={lang == "ar" ? "ShamelBold" : ""}
+        fontSize={{
+          xs: lang == "ar" ? "12px" : "14px",
+          sm: lang == "ar" ? "14px" : "18px",
+        }}
         color={theme.palette.primary.main}>
         {placeholder}{" "}
         <span
           style={{
+            fontFamily: lang == "ar" ? "Shamel" : "",
             fontSize: "13px",
             fontWeight: 500,
             color: theme.palette.primary.sec,
@@ -42,13 +51,13 @@ export default function ContactSelect({
           ({required})
         </span>
       </Typography>
-
       <select
         {...register(name, { required: "Platform is required" })}
         style={{
+          direction: "ltr",
           backgroundColor: theme.palette.primary.iti,
           margin: "5px 0px",
-          fontSize: "17px",
+          fontSize: lang == "ar" ? "12px" : "17px",
           border: "none",
           borderRadius: "15px",
           color: "white",
@@ -58,9 +67,11 @@ export default function ContactSelect({
           appearance: "none",
           WebkitAppearance: "none",
           MozAppearance: "none",
+          fontFamily: lang == "ar" ? "ShamelBold" : "",
         }}>
         <option disabled selected value="">
-          Select a platform
+          {" "}
+          {lang == "ar" ? "اختر المنصة" : "Select a platform"}
         </option>
         {Contacts.map((platform, index) => (
           <option
@@ -71,6 +82,8 @@ export default function ContactSelect({
               backgroundColor: "#fff",
               maxHeight: "200px",
               overflowY: "auto",
+              fontFamily: "Poppins",
+              fontSize: "15px",
             }}>
             {platform}
           </option>

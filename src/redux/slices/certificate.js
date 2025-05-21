@@ -6,7 +6,7 @@ const baseUrl = "https://iti-freelancing-hub-server.vercel.app/students/";
 export const addCertificate = createAsyncThunk(
   "certificate/post",
   async (body, thunkAPI) => {
-    console.log(body);
+
     try {
       const response = await axios.post(baseUrl + "certificate", body.data, {
         headers: {
@@ -24,14 +24,13 @@ export const getCertificate = createAsyncThunk(
   "certificate/get",
   async (body, thunkAPI) => {
     try {
-      console.log(body);
       const response = await axios.get(baseUrl + `certificate/${body}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("AccessToken")} `,
         },
       });
 
-      return response.data.jobData;
+      return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue("Failed to get");
     }
@@ -43,7 +42,7 @@ export const updateCertificate = createAsyncThunk(
   async (body, thunkAPI) => {
     try {
       const { id, certificateData } = body;
-      console.log(body);
+    
       const response = await axios.put(
         baseUrl + `certificate/${id}`,
         certificateData,
@@ -54,7 +53,7 @@ export const updateCertificate = createAsyncThunk(
         }
       );
 
-      console.log(response);
+  
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue("Failed to update");
@@ -73,7 +72,7 @@ export const certificateFormSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(addCertificate.fulfilled, (state, action) => {
-        console.log(action.payload);
+
         state.loading = false;
       })
       .addCase(addCertificate.pending, (state, action) => {

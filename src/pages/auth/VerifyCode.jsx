@@ -60,7 +60,7 @@ export default function VerifyCode() {
         { email, code: otp }
       );
       if (response.status === 200) {
-        console.log(response);
+ 
         localStorage.setItem("AccessToken", response.data.AccessToken);
         nav("/auth/resetPassword");
       }

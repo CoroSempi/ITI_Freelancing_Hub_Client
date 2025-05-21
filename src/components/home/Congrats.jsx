@@ -11,21 +11,20 @@ export default function Congrats() {
   return (
     <Box
       sx={{
+        direction: lang === "ar" ? "rtl" : "ltr",
         display: "flex",
         padding: { xs: 2, sm: 0 },
         gap: 3,
-        justifyContent: "center",
+        justifyContent: "start",
         alignItems: { xs: "start", sm: "center" },
         backgroundColor: { xs: theme.palette.background.card, sm: "inherit" },
         borderRadius: "10px",
-      }}
-    >
+      }}>
       <img height={60} src="/congrats.svg" alt="" />
       <Typography
         fontSize={{ xs: "13px", sm: "17px" }}
-        fontFamily={lang === "en" ? "" : "Shamel"}
-        color={theme.palette.primary.sec}
-      >
+        fontFamily={lang === "en" ? "" : "ShamelBold"}
+        color={theme.palette.primary.sec}>
         {localization.message}
       </Typography>
     </Box>

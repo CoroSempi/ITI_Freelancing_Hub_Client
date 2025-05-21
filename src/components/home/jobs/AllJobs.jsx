@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import SectionTop from "./SectionTop.jsx";
-import { Box, CircularProgress, Stack } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Stack,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import RequestCard from "./JobCard.jsx";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
+import LocalizationProvider from "../../../context/localizationContext.jsx";
 
 export default function AllJobs() {
   const baseUrl = "https://iti-freelancing-hub-server.vercel.app/students/";
   const [jobs, setJobs] = useState(null);
+  const { lang } = useContext(LocalizationProvider);
+  const theme = useTheme();
 
   async function getJobs(token) {
     try {
@@ -45,8 +54,36 @@ export default function AllJobs() {
     );
 
   return (
-    <Stack spacing={2}>
+    <Stack sx={{ direction: lang === "ar" ? "rtl" : "ltr" }} spacing={2}>
       <SectionTop />
+
+      {jobs.length === 0 ? (
+        <Box
+          sx={{
+            minHeight: { xs: "180px", md: "250px" },
+            direction: lang === "ar" ? "rtl" : "ltr",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            flexDirection: "column",
+            gap: 1,
+          }}>
+          <Typography
+            fontFamily={lang == "ar" ? "Shamel" : ""}
+            variant="body1"
+            color={theme.palette.primary.sec}>
+            {lang === "en" ? "No Jobs Yet" : "لا يوجد وظائف بعد"}
+          </Typography>
+          <Typography
+            fontFamily={lang == "ar" ? "Shamel" : ""}
+            variant="body2"
+            color={theme.palette.primary.sec}>
+            {lang == "en" ? "Let's Add New Job !" : "يمكنك اضافة اعمالك الأن !"}
+          </Typography>
+        </Box>
+      ) : null}
+
       <Box
         sx={{
           flexDirection: "row",

@@ -1,22 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { CircularProgress, Stack } from "@mui/material";
-import User from "../../components/Home/User";
+
 import TopCards from "../../components/Home/TopCards";
-import Congrats from "../../components/Home/Congrats";
+
 import AllJobs from "../../components/Home/jobs/AllJobs.jsx";
 import AllCertificates from "../../components/Home/certificate/AllCertificates.jsx";
 import NotiCounter from "../../components/Home/notiCounter.jsx";
 import NotiDrawer from "../../components/notifications/NotiDrawer.jsx";
 import { StudentData } from "../../redux/slices/profile.js";
+import User from "../../components/home/User.jsx";
+import Congrats from "../../components/home/Congrats.jsx";
+import LocalizationProvider from "../../context/localizationContext.jsx";
 
 export default function Home() {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile);
   const [noti, setNoti] = useState(false);
+
+  const { lang } = useContext(LocalizationProvider);
 
   useEffect(() => {
     dispatch(StudentData())
@@ -44,6 +49,9 @@ export default function Home() {
         margin: { xs: "70px 10px", md: "80px 30px" },
       }}>
       <Stack
+        sx={{
+          direction: lang === "ar" && "rtl",
+        }}
         justifyContent={"space-between"}
         direction={"row"}
         alignItems={"center"}>

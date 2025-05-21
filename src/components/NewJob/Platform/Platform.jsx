@@ -151,8 +151,7 @@ export default function Platform({ id }) {
         direction="row"
         spacing={1}
         my={3}
-        alignItems="center"
-      >
+        alignItems="center">
         <Box
           sx={{
             width: "8px",
@@ -162,12 +161,10 @@ export default function Platform({ id }) {
           }}
         />
         <Typography
-          // sx={{ marginLeft: lang === "ar" ? "15px" : "80px"}}
           fontFamily={lang === "ar" ? "ShamelBold" : ""}
           fontSize={lang === "ar" ? "16px" : "20px"}
           fontWeight={550}
-          color={theme.palette.primary.main}
-        >
+          color={theme.palette.primary.main}>
           {localization.title}
         </Typography>
       </Stack>
@@ -175,8 +172,7 @@ export default function Platform({ id }) {
         <Grid
           container
           spacing={2}
-          sx={{ width: "100%", px: { xs: 0, md: 2 } }}
-        >
+          sx={{ width: "100%", px: { xs: 0, md: 2 } }}>
           <Grid item size={{ xs: 12, lg: 6 }}>
             <TextInput
               fontFamily={lang === "en" ? "" : "Shamel"}
@@ -200,8 +196,7 @@ export default function Platform({ id }) {
             <Stack
               direction={"row"}
               sx={{ marginBottom: "30px", gap: { xs: 1, md: 3 } }}
-              spacing={1}
-            >
+              spacing={1}>
               <DateInput
                 fontFamily={lang === "en" ? "" : "Shamel"}
                 register={register}
@@ -242,7 +237,7 @@ export default function Platform({ id }) {
             </Stack>
 
             <StudentSelect
-              // fontFamily={ lang === "en" ? "" : "Shamel"}
+          
               placeholder={localization.teamMembers.placeholder}
               required={localization.teamMembers.required}
               total={costInUSD - 5}
@@ -313,8 +308,7 @@ export default function Platform({ id }) {
             my: 2,
             width: "100%",
             gap: lang === "ar" ? "15px" : theme.spacing(2),
-          }}
-        >
+          }}>
           <Button
             onClick={() => nav(-1)}
             variant="outlined"
@@ -327,8 +321,7 @@ export default function Platform({ id }) {
               border: `1px solid ${theme.palette.primary.iti}`,
               fontFamily: lang === "en" ? "" : "Shamel",
               maxWidth: { sm: "400px" },
-            }}
-          >
+            }}>
             {localization.buttons.back}
           </Button>
           <Button
@@ -342,8 +335,7 @@ export default function Platform({ id }) {
               borderRadius: "15px",
               fontFamily: lang === "en" ? "" : "Shamel",
               maxWidth: { sm: "400px" },
-            }}
-          >
+            }}>
             {loading ? (
               <CircularProgress size={24} />
             ) : id ? (

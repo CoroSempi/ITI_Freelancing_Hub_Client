@@ -1,7 +1,7 @@
 import React from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import { ListSubheader, Stack, Typography, useTheme } from "@mui/material";
+import { ListSubheader, Typography, useTheme } from "@mui/material";
 import { useContext } from "react";
 import LocalizationProvider from "../../context/localizationContext";
 

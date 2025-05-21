@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Stack, Typography, useTheme } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
 import { settingsLocalization } from "../../StaticData/Localization";
 import LocalizationProvider from "../../context/localizationContext";

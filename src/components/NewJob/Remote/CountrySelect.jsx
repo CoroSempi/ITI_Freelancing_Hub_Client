@@ -3,6 +3,8 @@ import { Stack, Typography, useTheme, Box } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { useDispatch, useSelector } from "react-redux";
 import { countries as fetchCountries } from "../../../redux/slices/platform";
+import { useContext } from "react";
+import LocalizationProvider from "../../../context/localizationContext";
 
 export default function CountrySelect({
   register,
@@ -15,7 +17,7 @@ export default function CountrySelect({
   const theme = useTheme();
   const dispatch = useDispatch();
   const [selectedFlag, setSelectedFlag] = useState("");
-
+  const { lang } = useContext(LocalizationProvider);
   const platform = useSelector((state) => state.platform);
 
   useEffect(() => {
@@ -32,8 +34,12 @@ export default function CountrySelect({
   return (
     <Stack sx={{ marginBottom: "30px", position: "relative" }}>
       <Typography
+        fontFamily={lang == "ar" ? "ShamelBold" : ""}
         fontWeight={550}
-        fontSize={{ xs: "14px", sm: "18px" }}
+        fontSize={{
+          xs: lang == "ar" ? "12px" : "14px",
+          sm: lang == "ar" ? "14px" : "18px",
+        }}
         color={theme.palette.primary.main}>
         {placeholder}{" "}
         <span
@@ -52,7 +58,6 @@ export default function CountrySelect({
           style={{
             backgroundColor: theme.palette.primary.iti,
             margin: "5px 0px",
-            fontSize: "17px",
             border: "none",
             borderRadius: "15px",
             color: "white",
@@ -62,9 +67,12 @@ export default function CountrySelect({
             appearance: "none",
             WebkitAppearance: "none",
             MozAppearance: "none",
+            fontFamily: lang == "ar" ? "ShamelBold" : "",
+            fontSize: lang == "ar" ? "12px" : "17px",
+            direction: "ltr",
           }}>
           <option disabled selected value="">
-            Select a country
+            {lang == "ar" ? "اختر الدولة" : "Select a country"}
           </option>
           {platform.countries.map((country, index) => (
             <option
@@ -73,6 +81,8 @@ export default function CountrySelect({
               style={{
                 color: "#000",
                 backgroundColor: "#fff",
+                fontFamily: "Poppins",
+                fontSize: "15px",
               }}>
               {country.name}
             </option>

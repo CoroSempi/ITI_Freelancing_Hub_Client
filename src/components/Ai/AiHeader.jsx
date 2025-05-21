@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Box, Stack, Typography, useTheme } from "@mui/material";
+import {  Stack, Typography, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import LocalizationProvider from "../../context/localizationContext";
 

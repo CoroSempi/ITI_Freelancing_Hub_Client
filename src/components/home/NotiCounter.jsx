@@ -1,11 +1,9 @@
-import React, { use } from "react";
-import { useEffect, useState } from "react";
-
+import React from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getNotifcation } from "../../redux/slices/notifcation";
 import { Badge, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import NotiDrawer from "../notifications/NotiDrawer";
 
 export default function NotiCounter({ noti, setNoti }) {
   const dispatch = useDispatch();

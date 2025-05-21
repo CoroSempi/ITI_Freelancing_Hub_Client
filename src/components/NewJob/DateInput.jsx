@@ -19,14 +19,19 @@ export default function DateInput({
   return (
     <Stack sx={{ marginBottom: "30px", width: { xs: "48%", md: "30%" } }}>
       <Typography
+        fontFamily={lang == "ar" ? "ShamelBold" : ""}
         fontWeight={550}
-        fontSize={{ xs: "14px", sm: "18px" }}
+        fontSize={{
+          xs: lang == "ar" ? "12px" : "14px",
+          sm: lang == "ar" ? "14px" : "18px",
+        }}
         color={theme.palette.primary.main}>
         {placeholder}{" "}
         <span
           style={{
             fontWeight: 500,
             fontSize: "13px",
+            fontFamily: lang == "ar" ? "Shamel" : "",
             color: theme.palette.primary.sec,
           }}>{`(${required})`}</span>
       </Typography>

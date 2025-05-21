@@ -5,7 +5,6 @@ import { Box, Divider } from "@mui/material";
 import SettHeader from "../../components/settings/SettHeader";
 import Account from "../../components/settings/Account";
 import Support from "../../components/settings/Support";
-import { Edit } from "@mui/icons-material";
 import EditProfile from "../editProfile/EditProfile";
 import { useState } from "react";
 import Chats from "../Chats/Chats";

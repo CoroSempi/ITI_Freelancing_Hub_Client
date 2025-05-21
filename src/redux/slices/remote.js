@@ -21,7 +21,7 @@ export const addRemote = createAsyncThunk(
 
 export const getJob = createAsyncThunk("job/get", async (body, thunkAPI) => {
   try {
-    console.log(body);
+
     const response = await axios.get(baseUrl + `jobs/${body}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("AccessToken")} `,
@@ -39,14 +39,13 @@ export const updateRemote = createAsyncThunk(
   async (body, thunkAPI) => {
     try {
       const { id, jobData } = body;
-      console.log(body);
+    
       const response = await axios.put(baseUrl + `remoteJob/${id}`, jobData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("AccessToken")} `,
         },
       });
 
-      console.log(response);
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue("Failed to update");
@@ -66,7 +65,7 @@ export const remoteFormSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(addRemote.fulfilled, (state, action) => {
-        console.log(action.payload);
+    
         state.loading = false;
       })
       .addCase(addRemote.pending, (state, action) => {

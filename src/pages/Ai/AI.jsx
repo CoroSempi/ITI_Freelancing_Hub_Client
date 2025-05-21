@@ -1,24 +1,13 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import LocalizationProvider from "../../context/localizationContext";
 
-import { Box, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 
 import AiHeader from "../../components/Ai/AiHeader";
 import AiRoom from "../../components/Ai/AiRoom";
 
 export default function AI() {
   const { lang } = useContext(LocalizationProvider);
-
-  //   useEffect(() => {
-  //     // window.scrollTo(0, 0);
-  //     run("test");
-  //   }, []);
-
-  async function run(userInput) {
-    // const response = await runChat("test");
-    // console.log(response);
-  }
-
   return (
     <>
       <Stack

@@ -19,10 +19,11 @@ export default function NewJob() {
         direction: lang === "ar" ? "rtl" : "ltr",
       }}>
       <Typography
-        fontSize={lang === "en" ? "25px" : "22px"}
+        fontSize={lang === "en" ? "25px" : "18px"}
         fontWeight={550}
         sx={{
           fontFamily: lang === "en" ? "" : "ShamelBold",
+
           color: theme.palette.primary.main,
         }}>
         {lang === "en" ? "Add New Job" : "اضافة عمل جديد"}

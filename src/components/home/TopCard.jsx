@@ -1,8 +1,12 @@
 import { Box, useTheme, Typography } from "@mui/material";
 import React from "react";
+import LocalizationProvider from "../../context/localizationContext";
+import { useContext } from "react";
 
 export default function TopCard({ name, value }) {
   const theme = useTheme();
+  const { lang } = useContext(LocalizationProvider);
+
   return (
     <Box
       sx={{
@@ -19,15 +23,17 @@ export default function TopCard({ name, value }) {
         ""
       ) : (
         <Typography
+          fontFamily={lang == "ar" ? "ShamelBold" : ""}
           sx={{ opacity: 0.6 }}
           fontWeight={550}
+          fontSize={lang == "ar" ? 14 : 17}
           color={theme.palette.primary.main}>
-          {name || "loading"}
+          {name}
         </Typography>
       )}
 
       <Typography sx={{ opacity: 0.6 }} fontWeight={550} color="#D7777B">
-        {value || "loading"}
+        {value || 0}
       </Typography>
     </Box>
   );

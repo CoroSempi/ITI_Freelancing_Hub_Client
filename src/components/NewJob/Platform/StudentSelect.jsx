@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Stack, Typography, useTheme, Box } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { useDispatch, useSelector } from "react-redux";
 import { getStudents } from "../../../redux/slices/platform";
 import { Delete } from "@mui/icons-material";
+import LocalizationProvider from "../../../context/localizationContext";
 
 export default function StudentSelect({
   placeholder,
@@ -17,6 +18,7 @@ export default function StudentSelect({
   const theme = useTheme();
   const dispatch = useDispatch();
   const [selectedStudents, setSelectedStudents] = useState([]);
+  const { lang } = useContext(LocalizationProvider);
 
   const { students } = useSelector((state) => state.platform);
   const [currentTotal, setCurrentTotal] = useState(0);
@@ -31,7 +33,6 @@ export default function StudentSelect({
         shares.some((share) => share.studentID === s._id)
       );
       setSelectedStudents(selected);
-      console.log("Selected Students:", selected);
     }
   }, [id, students, shares]);
 
@@ -87,11 +88,16 @@ export default function StudentSelect({
     <Stack sx={{ marginBottom: "30px", position: "relative" }}>
       <Typography
         fontWeight={550}
-        fontSize={{ xs: "14px", sm: "18px" }}
+        fontSize={{
+          xs: lang == "ar" ? "12px" : "14px",
+          sm: lang == "ar" ? "14px" : "18px",
+        }}
+        fontFamily={lang == "ar" ? "ShamelBold" : ""}
         color={theme.palette.primary.main}>
         {placeholder}{" "}
         <span
           style={{
+            fontFamily: lang == "ar" ? "Shamel" : "",
             fontSize: "13px",
             fontWeight: 500,
             color: theme.palette.primary.sec,
@@ -108,9 +114,10 @@ export default function StudentSelect({
             e.target.value = "";
           }}
           style={{
+            direction: "ltr",
             backgroundColor: theme.palette.primary.iti,
+            fontSize: lang == "ar" ? "12px" : "17px",
             margin: "5px 0px",
-            fontSize: "17px",
             border: "none",
             borderRadius: "15px",
             color: "white",
@@ -120,9 +127,12 @@ export default function StudentSelect({
             appearance: "none",
             WebkitAppearance: "none",
             MozAppearance: "none",
+            fontFamily: lang == "ar" ? "ShamelBold" : "",
           }}>
           <option disabled selected value="">
-            Select your Team Members
+            {lang == "en"
+              ? "Select your Team Members"
+              : "اختر أعضاء الفريق الخاص بك"}
           </option>
           {students
             .filter(
@@ -132,7 +142,12 @@ export default function StudentSelect({
               <option
                 key={std._id}
                 value={std._id}
-                style={{ color: "#000", backgroundColor: "#fff" }}>
+                style={{
+                  color: "#000",
+                  backgroundColor: "#fff",
+                  fontFamily: "Poppins",
+                  fontSize: "15px",
+                }}>
                 {std.fullName}
               </option>
             ))}
@@ -155,7 +170,10 @@ export default function StudentSelect({
         <span>{desc}</span>
       </Typography>
 
-      <Stack sx={{ maxHeight: "170px", overflow: "auto" }} mt={1} spacing={2}>
+      <Stack
+        sx={{ maxHeight: "170px", overflow: "auto", direction: "ltr" }}
+        mt={1}
+        spacing={2}>
         {selectedStudents.map((std) => {
           const shareObj = shares.find((s) => s.studentID === std._id);
           return (

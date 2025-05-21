@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import LocalizationContext from "../../context/localizationContext";
@@ -38,7 +38,15 @@ export default function TwoPartContainer() {
   };
 
   return (
-    <Box sx={{ marginRight: "30px", marginLeft: "30px", height: "100vh" }}>
+    <Box
+      sx={{
+        maxWidth: "100vw",
+        minHeight: "90vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: { xs: "10px", md: "40px" },
+      }}>
       <Grid
         container
         spacing={{ xs: 2, md: 4 }}
@@ -46,19 +54,17 @@ export default function TwoPartContainer() {
           paddingTop: isMobile ? "10px" : "60px",
           paddingLeft: isMobile ? "" : "30px",
           direction: lang === "ar" ? "rtl" : "ltr",
-        }}
-      >
+        }}>
         <Grid size={{ sm: 12, md: 6 }}>
           <Button
             variant="text"
             onClick={() => nav(-1)}
             sx={{
-               fontFamily: lang === "en" ? "" : "Shamel",
+              fontFamily: lang === "en" ? "" : "Shamel",
               marginTop: isMobile ? "40px" : "-10px",
               color: "#D7777B",
               fontWeight: "600",
-            }}
-          >
+            }}>
             <ArrowBackIosIcon
               sx={{
                 transform: lang === "ar" ? "rotate(180deg)" : "none",
@@ -76,8 +82,7 @@ export default function TwoPartContainer() {
                 fontWeight: 600,
                 letterSpacing: "0.5px",
                 mb: 2,
-              }}
-            >
+              }}>
               {localization[lang].title}
             </Typography>
 
@@ -89,11 +94,26 @@ export default function TwoPartContainer() {
                 fontWeight: 500,
                 letterSpacing: "0.4px",
                 mb: 4,
-              }}
-            >
+              }}>
               {localization[lang].subtitle}
             </Typography>
           </div>
+
+          <Box
+            display={{ xs: "flex", md: "none" }}
+            sx={{
+              justifyContent: "center",
+              alignItems: "center",
+            }}>
+            <img
+              style={{
+                maxWidth: "70vw",
+                margin: "20px 0px",
+              }}
+              src="/Group 439.svg"
+            />
+          </Box>
+
           <div>
             <Typography
               fontFamily={lang === "en" ? "" : "ShamelBold"}
@@ -103,8 +123,7 @@ export default function TwoPartContainer() {
                 fontWeight: 600,
                 letterSpacing: "0.5px",
                 mb: 2,
-              }}
-            >
+              }}>
               {localization[lang].howToUse}
             </Typography>
 
@@ -117,18 +136,15 @@ export default function TwoPartContainer() {
                 background: "#F6F6F6",
                 mb: 4,
                 position: "relative",
-              }}
-            >
+              }}>
               <IconButton
                 onClick={goToPrevSlide}
                 sx={{
-                 
                   position: "absolute",
                   left: "10px",
                   top: "50%",
-                   transform: lang === "ar" ? "rotate(180deg)" : "none",
-                }}
-              >
+                  transform: lang === "ar" ? "rotate(180deg)" : "none",
+                }}>
                 {lang === "ar" ? (
                   <KeyboardArrowRightIcon />
                 ) : (
@@ -143,8 +159,7 @@ export default function TwoPartContainer() {
                   right: "10px",
                   top: "50%",
                   transform: lang === "ar" ? "rotate(180deg)" : "none",
-                }}
-              >
+                }}>
                 {lang === "ar" ? (
                   <KeyboardArrowLeftIcon />
                 ) : (
@@ -154,8 +169,7 @@ export default function TwoPartContainer() {
 
               <Box
                 sx={{ p: { xs: 3, md: 4 } }}
-                backgroundColor={theme.palette.background.card}
-              >
+                backgroundColor={theme.palette.background.card}>
                 <Typography
                   fontFamily={lang === "en" ? "" : "ShamelBold"}
                   sx={{
@@ -163,17 +177,14 @@ export default function TwoPartContainer() {
                     fontSize: { xs: "18px", md: "20px" },
                     fontWeight: 600,
                     mb: 2,
-                  
-                  }}
-                >
+                  }}>
                   {localization[lang].slides[activeSlide].title}
                 </Typography>
 
                 <Box
                   component="ul"
                   sx={{ pl: 2, listStyle: "disc" }}
-                  fontFamily={lang === "en" ? "" : "Shamel"}
-                >
+                  fontFamily={lang === "en" ? "" : "Shamel"}>
                   {localization[lang].slides[activeSlide].content.map(
                     (item, index) => (
                       <Box
@@ -185,8 +196,7 @@ export default function TwoPartContainer() {
                           fontWeight: 500,
                           letterSpacing: "0.36px",
                           mb: 1,
-                        }}
-                      >
+                        }}>
                         {item}
                       </Box>
                     )
@@ -196,8 +206,7 @@ export default function TwoPartContainer() {
 
               <Box
                 sx={{ display: "flex", justifyContent: "center", pb: 2 }}
-                backgroundColor={theme.palette.background.card}
-              >
+                backgroundColor={theme.palette.background.card}>
                 {localization[lang].slides.map((_, index) => (
                   <Box
                     key={index}
@@ -218,15 +227,22 @@ export default function TwoPartContainer() {
           </div>
         </Grid>
 
-        <Grid size={{sm: 12, md: 6 }}>
+        <Grid
+          justifyContent={"center"}
+          alignItems={"center"}
+          display={isMobile ? "none" : "flex"}
+          size={{ sm: 12, md: 6 }}>
           <Box
             sx={{
               justifyContent: "center",
               alignItems: "start",
               display: isMobile ? "flex" : "flex",
-            }}
-          >
-            <img src="/Group 439.svg" alt="Background shape" />
+            }}>
+            <img
+              style={{ maxWidth: "90vw" }}
+              src="/Group 439.svg"
+              alt="Background shape"
+            />
           </Box>
         </Grid>
       </Grid>

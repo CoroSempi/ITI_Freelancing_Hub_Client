@@ -39,17 +39,17 @@ function DeleteModal({ open, handleClose, itemId, itemType, certificateId }) {
 
         if (jobType.toLowerCase().includes("direct")) {
           endpoint = `https://iti-freelancing-hub-server.vercel.app/students/directJob/${id}`;
-        } 
-        else if (jobType.toLowerCase().includes("platform")) {
+        } else if (jobType.toLowerCase().includes("platform")) {
           endpoint = `https://iti-freelancing-hub-server.vercel.app/students/platformJob/${id}`;
-        } 
-        else if (jobType.toLowerCase().includes("remote")) {
+        } else if (jobType.toLowerCase().includes("remote")) {
           endpoint = `https://iti-freelancing-hub-server.vercel.app/students/remoteJob/${id}`;
         }
       }
 
       if (!endpoint) {
-        console.error("Unknown item type or job type, cannot determine delete endpoint");
+        console.error(
+          "Unknown item type or job type, cannot determine delete endpoint"
+        );
         setIsDeleting(false);
         return;
       }
@@ -76,24 +76,24 @@ function DeleteModal({ open, handleClose, itemId, itemType, certificateId }) {
           borderRadius: 4,
           width: "90%",
           maxWidth: 500,
+
           p: 4,
           boxShadow: 3,
           bgcolor: "background.paper",
           mx: "auto",
           my: "20vh",
           direction: lang === "ar" ? "rtl" : "ltr",
-        }}
-      >
+        }}>
         <Typography
           variant="h6"
           align="center"
           sx={{
+            my: 2,
             color: theme.palette.primary.main,
             fontSize: "25px",
             fontWeight: 700,
             fontFamily: lang === "en" ? "" : "ShamelBold",
-          }}
-        >
+          }}>
           {localization.title}
         </Typography>
 
@@ -105,8 +105,7 @@ function DeleteModal({ open, handleClose, itemId, itemType, certificateId }) {
             fontSize: "18px",
             mb: 1,
             fontFamily: lang === "en" ? "" : "Shamel",
-          }}
-        >
+          }}>
           {localization.message.replace("{item}", localization[type])}
         </Typography>
 
@@ -121,8 +120,7 @@ function DeleteModal({ open, handleClose, itemId, itemType, certificateId }) {
             fontWeight: 600,
             fontFamily: "Poppins",
             flexDirection: lang === "ar" ? "row-reverse" : "row",
-          }}
-        >
+          }}>
           <Button
             onClick={handleClose}
             variant="outlined"
@@ -133,12 +131,11 @@ function DeleteModal({ open, handleClose, itemId, itemType, certificateId }) {
               borderRadius: "15px",
               color: "#BF272D",
               border: "1px solid #BF272D",
-              fontFamily: "Poppins",
+              fontFamily: lang === "en" ? "" : "Shamel",
               fontSize: "14px",
               fontWeight: 600,
               maxWidth: { sm: "200px" },
-            }}
-          >
+            }}>
             {localization.cancel}
           </Button>
 
@@ -150,16 +147,19 @@ function DeleteModal({ open, handleClose, itemId, itemType, certificateId }) {
             sx={{
               py: 1.5,
               fontWeight: 600,
-              fontFamily: "Poppins",
+              fontFamily: lang === "en" ? "" : "Shamel",
               borderRadius: "15px",
               backgroundColor: theme.palette.primary.main,
-              '&:hover': {
+              "&:hover": {
                 backgroundColor: theme.palette.primary.sec,
               },
               maxWidth: { sm: "200px" },
-            }}
-          >
-            {isDeleting ? <CircularProgress size={24} color="inherit" /> : localization.delete}
+            }}>
+            {isDeleting ? (
+              <CircularProgress size={24} color="inherit" />
+            ) : (
+              localization.delete
+            )}
           </Button>
         </Box>
       </Card>

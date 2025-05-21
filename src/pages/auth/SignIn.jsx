@@ -57,7 +57,6 @@ export default function SignIn() {
       setError(response.message);
     } else {
       localStorage.setItem("AccessToken", response.AccessToken);
-      localStorage.setItem("studentData", JSON.stringify(response.studentData));
       nav("/");
     }
   };

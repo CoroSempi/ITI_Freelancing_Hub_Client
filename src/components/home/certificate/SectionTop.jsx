@@ -1,13 +1,13 @@
 import { Box, Stack, Typography, useTheme } from "@mui/material";
 import React from "react";
-import  { useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import LocalizationContext from "../../../context/localizationContext";
 
 export default function SectionTop() {
   const theme = useTheme();
-   const navigate =useNavigate()
-     const { lang } = useContext(LocalizationContext);
+  const navigate = useNavigate();
+  const { lang } = useContext(LocalizationContext);
   return (
     <Box
       sx={{
@@ -16,9 +16,12 @@ export default function SectionTop() {
         alignItems: "center",
         width: "100%",
         maxWidth: "400px",
-        //  direction: lang === "ar" ? "rtl" : "ltr",
+        direction: lang === "ar" ? "rtl" : "ltr",
       }}>
       <Stack
+        sx={{
+          gap: lang === "ar" ? 1 : 0,
+        }}
         direction={"row"}
         spacing={1}
         justifyContent={"center"}
@@ -34,12 +37,14 @@ export default function SectionTop() {
           .
         </div>
         <Typography
-          fontSize={{ xs: "20px", sm: "25px" }}
+          fontFamily={lang === "en" ? "" : "ShamelBold"}
+          fontSize={{
+            xs: lang === "ar" ? "16px" : "20px",
+            sm: lang === "ar" ? "18px" : "25px",
+          }}
           fontWeight={550}
           color={theme.palette.primary.main}>
-           {lang === "en"
-            ? "Certificates"
-            : "الشهادات"}
+          {lang === "en" ? "Certificates" : "الشهادات"}
         </Typography>
       </Stack>
 
@@ -53,11 +58,10 @@ export default function SectionTop() {
           color: "#44B40D",
           cursor: "pointer",
           fontWeight: "bold",
+          fontFamily: lang === "en" ? "" : "ShamelBold",
+          fontSize: lang === "ar" ? "10px" : "14px",
         }}>
-        {lang === "en"
-            ? "Add New Certificate"
-            :"إضافة شهادة جديدة"
-}
+        {lang === "en" ? "Add New Certificate" : "إضافة شهادة جديدة"}
       </button>
     </Box>
   );

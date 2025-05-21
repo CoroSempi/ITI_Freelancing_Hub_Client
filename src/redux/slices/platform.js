@@ -48,7 +48,6 @@ export const addPlatform = createAsyncThunk(
   "platformJob/post",
   async (body, thunkAPI) => {
     try {
-      console.log(body);
       const response = await axios.post(baseUrl + "platformJob", body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("AccessToken")} `,
@@ -63,7 +62,6 @@ export const addPlatform = createAsyncThunk(
 
 export const getJob = createAsyncThunk("job/get", async (body, thunkAPI) => {
   try {
-    console.log(body);
     const response = await axios.get(baseUrl + `jobs/${body}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("AccessToken")} `,
@@ -81,14 +79,13 @@ export const updatePlatform = createAsyncThunk(
   async (body, thunkAPI) => {
     try {
       const { id, jobData } = body;
-      console.log(body);
+
       const response = await axios.put(baseUrl + `platformJob/${id}`, jobData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("AccessToken")} `,
         },
       });
 
-      console.log(response);
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue("Failed to update");
@@ -119,7 +116,7 @@ export const platFormSlice = createSlice({
 
     builder
       .addCase(addPlatform.fulfilled, (state, action) => {
-        console.log(action.payload);
+        action.payload;
         state.loading = false;
       })
       .addCase(addPlatform.pending, (state, action) => {

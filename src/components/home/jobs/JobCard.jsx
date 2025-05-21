@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Link, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Stack, Typography, useTheme } from "@mui/material";
 import Prices from "./Prices";
 import { useNavigate } from "react-router-dom";
 
@@ -9,6 +9,7 @@ export default function JobCard({ job }) {
   return (
     <Box
       sx={{
+        direction: "ltr",
         display: "flex",
         alignItems: "center",
         backgroundColor: theme.palette.background.card,

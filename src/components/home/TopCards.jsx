@@ -28,14 +28,19 @@ export default function TopCards({ jobs, track, certificates }) {
         alignItems: "start",
         gap: { xs: 1, sm: 1.5 },
         direction: lang === "ar" ? "rtl" : "ltr",
-      }}
-    >
-      <TopCard name={localization.track} value={track} />
+      }}>
+      <TopCard value={track} />
       <TopCard name={localization.totalJobs} value={jobs?.length || 0} />
       <TopCard name={localization.completedJobs} value={completedJobs.length} />
       <TopCard name={localization.profitUSD} value={`$${profit.toFixed(2)}`} />
-      <TopCard name={localization.profitEGP} value={`EGP ${(profit * 50).toFixed(2)}`} />
-      <TopCard name={localization.certificates} value={certificates?.length || 0} />
+      <TopCard
+        name={localization.profitEGP}
+        value={`EGP ${(profit * 50).toFixed(2)}`}
+      />
+      <TopCard
+        name={localization.certificates}
+        value={certificates?.length || 0}
+      />
     </Stack>
   );
 }

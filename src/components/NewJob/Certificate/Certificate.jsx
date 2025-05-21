@@ -13,9 +13,8 @@ import TextInput from "../TextInput";
 import { useForm } from "react-hook-form";
 import DateInput from "../DateInput";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import AddedModal from "../addedModal";
 import ApprochSelect from "./ApprochSelect";
 import {
   addCertificate,
@@ -23,8 +22,9 @@ import {
   updateCertificate,
 } from "../../../redux/slices/certificate";
 import { certificateFormLocalization } from "../../../StaticData/Localization";
+import AddedCerModal from "./AddedCerModal";
 
-export default function Certificate({ id }) {
+export default function Certificate() {
   const { lang } = useContext(LocalizationProvider);
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ export default function Certificate({ id }) {
   const [modal, setModal] = useState(false);
   const nav = useNavigate();
   const localization = certificateFormLocalization[lang];
-
+  const { id } = useParams();
   const {
     register,
     handleSubmit,
@@ -49,8 +49,8 @@ export default function Certificate({ id }) {
       approach: "",
       startDate: "",
       endDate: "",
+
       proofOfCertificate: "",
-      proofOfWork: "",
     },
   });
 
@@ -63,15 +63,16 @@ export default function Certificate({ id }) {
   async function loadCertificateData() {
     if (id) {
       const certificate = await dispatch(getCertificate(id)).unwrap();
-      console.log(certificate);
+
       setValue("certificateId", certificate.certificateId);
       setValue("certificateDescription", certificate.certificateDescription);
       setValue("Company", certificate.Company);
       setValue("approach", certificate.approach);
+
       setValue("startDate", certificate.startDate);
       setValue("endDate", certificate.endDate);
       setValue("proofOfCertificate", certificate.proofOfCertificate);
-      setValue("proofOfWork", certificate.proofOfWork);
+      setValue("proofOfCertificate", certificate.proofOfCertificate);
     }
   }
 
@@ -110,8 +111,7 @@ export default function Certificate({ id }) {
       sx={{
         margin: { xs: "80px 15px", md: "80px 30px" },
         direction: lang === "ar" ? "rtl" : "ltr",
-      }}
-    >
+      }}>
       <Stack
         sx={{
           direction: lang === "ar" ? "rtl" : "ltr",
@@ -120,8 +120,7 @@ export default function Certificate({ id }) {
         direction="row"
         spacing={1}
         my={3}
-        alignItems="center"
-      >
+        alignItems="center">
         <Box
           sx={{
             width: "8px",
@@ -134,8 +133,7 @@ export default function Certificate({ id }) {
           fontFamily={lang === "ar" ? "ShamelBold" : ""}
           fontSize={lang === "ar" ? "16px" : "20px"}
           fontWeight={550}
-          color={theme.palette.primary.main}
-        >
+          color={theme.palette.primary.main}>
           {localization.title}
         </Typography>
       </Stack>
@@ -143,8 +141,7 @@ export default function Certificate({ id }) {
         <Grid
           container
           spacing={2}
-          sx={{ width: "100%", px: { xs: 0, md: 2 } }}
-        >
+          sx={{ width: "100%", px: { xs: 0, md: 2 } }}>
           <Grid item size={{ xs: 12, lg: 6 }}>
             <TextInput
               register={register}
@@ -166,8 +163,7 @@ export default function Certificate({ id }) {
             <Stack
               direction={"row"}
               sx={{ marginBottom: "30px", gap: { xs: 1, md: 3 } }}
-              spacing={1}
-            >
+              spacing={1}>
               <DateInput
                 register={register}
                 name="startDate"
@@ -211,14 +207,6 @@ export default function Certificate({ id }) {
               watch={watch}
               desc={localization.proofOfCertificate.desc}
             />
-
-            <TextInput
-              register={register}
-              name="proofOfWork"
-              placeholder={localization.proofOfWork.placeholder}
-              fullWidth
-              required={localization.proofOfWork.required}
-            />
           </Grid>
         </Grid>
 
@@ -229,8 +217,7 @@ export default function Certificate({ id }) {
             my: 2,
             width: "100%",
             gap: lang === "ar" ? "15px" : theme.spacing(2),
-          }}
-        >
+          }}>
           <Button
             onClick={() => nav(-1)}
             variant="outlined"
@@ -243,8 +230,7 @@ export default function Certificate({ id }) {
               border: `1px solid ${theme.palette.primary.iti}`,
               fontFamily: lang === "en" ? "" : "Shamel",
               maxWidth: { sm: "400px" },
-            }}
-          >
+            }}>
             {localization.buttons.back}
           </Button>
           <Button
@@ -258,8 +244,7 @@ export default function Certificate({ id }) {
               borderRadius: "15px",
               fontFamily: lang === "en" ? "" : "Shamel",
               maxWidth: { sm: "400px" },
-            }}
-          >
+            }}>
             {loading ? (
               <CircularProgress size={24} />
             ) : id ? (
@@ -271,7 +256,7 @@ export default function Certificate({ id }) {
         </Stack>
       </form>
 
-      <AddedModal open={modal} handleClose={handleClose} id={id} />
+      <AddedCerModal open={modal} handleClose={handleClose} id={id} />
     </Stack>
   );
 }

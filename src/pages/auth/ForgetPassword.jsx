@@ -58,7 +58,7 @@ export default function ForgetPassword() {
     if (response.status == 200) {
       nav(`/auth/verifyCode/${email}`);
     } else {
-      console.log(response.response);
+
       setError(response.response.data.message);
     }
   };

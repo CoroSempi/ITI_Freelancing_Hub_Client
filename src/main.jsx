@@ -9,11 +9,9 @@ import LearnMore from "./pages/learnMore/LearnMore.jsx";
 import ForgetPassword from "./pages/auth/ForgetPassword.jsx";
 import VerifyCode from "./pages/auth/VerifyCode.jsx";
 import ResetPassword from "./pages/auth/ResetPassword.jsx";
-
 import Home from "./pages/Home/Home.jsx";
 import Notifications from "./pages/Notifications/Notifications.jsx";
 import Settings from "./pages/Settings/Settings.jsx";
-
 import ChooseJob from "./pages/ChooseJob/ChooseJob.jsx";
 import JobDetails from "./pages/JobDetails/JobDetails.jsx";
 import CertificateDetails from "./pages/CertificateDetails/CertificateDetails.jsx";
@@ -40,6 +38,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="addNewJob/:type" element={<NewJob />} />
         <Route path="editJob/:type/:id" element={<NewJob />} />
         <Route path="addCertificate" element={<Certificate />} />
+        <Route path="editCertificate/:id" element={<Certificate />} />
         <Route path="certificateDetails/:id" element={<CertificateDetails />} />
         <Route path="delete" element={<DeleteModal />} />
         <Route path="learnMore" element={<LearnMore />} />

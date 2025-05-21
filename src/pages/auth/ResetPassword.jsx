@@ -51,7 +51,6 @@ export default function ResetPassword() {
   const onSubmit = async (data) => {
     setloading(true);
 
-    console.log(data.password);
     const response = await axios
       .post(
         "https://iti-freelancing-hub-server.vercel.app/students/resetPassword",
@@ -75,7 +74,7 @@ export default function ResetPassword() {
       setOpen(true);
       setError("");
       localStorage.removeItem("AccessToken");
-      localStorage.removeItem("studentData");
+   
     } else {
       setError(response.response.data.message);
     }

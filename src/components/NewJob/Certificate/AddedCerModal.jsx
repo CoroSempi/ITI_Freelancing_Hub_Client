@@ -9,16 +9,17 @@ import {
   Slide,
   useTheme,
 } from "@mui/material";
-import LocalizationContext from "../../context/localizationContext";
-import { addedModalLocalization } from "../../StaticData/Localization";
+
+import { addedModalLocalization } from "../../../StaticData/Localization";
+import LocalizationProvider from "../../../context/localizationContext";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AddedModal({ open, handleClose, id, cer }) {
+export default function AddedCerModal({ open, handleClose, id }) {
   const theme = useTheme();
-  const { lang } = useContext(LocalizationContext);
+  const { lang } = useContext(LocalizationProvider);
   const localization = addedModalLocalization[lang];
 
   return (
@@ -47,7 +48,7 @@ export default function AddedModal({ open, handleClose, id, cer }) {
           fontSize: { xs: "20px", sm: "25px" },
           fontWeight: 550,
         }}>
-        {id ? localization.updatedTitle : localization.addedTitle}
+        {id ? localization.updatedCerTitle : localization.addedCerTitle}
       </DialogTitle>
 
       <DialogContent
@@ -64,7 +65,7 @@ export default function AddedModal({ open, handleClose, id, cer }) {
           fontFamily={lang === "ar" ? "Shamel" : ""}
           color={theme.palette.primary.sec}
           id="alert-dialog-slide-description">
-          {id ? localization.updatedMessage : localization.addedMessage}
+          {id ? localization.updatedCerMessage : localization.addedCerMessage}
         </DialogContentText>
         <img src="/done.svg" alt="done" />
       </DialogContent>

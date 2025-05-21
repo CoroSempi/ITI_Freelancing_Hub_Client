@@ -19,8 +19,12 @@ export default function TextInput({
   return (
     <Stack sx={{ marginBottom: "30px" }}>
       <Typography
+        fontFamily={lang == "ar" ? "ShamelBold" : ""}
         fontWeight={550}
-        fontSize={{ xs: "14px", sm: "18px" }}
+        fontSize={{
+          xs: lang == "ar" ? "12px" : "14px",
+          sm: lang == "ar" ? "14px" : "18px",
+        }}
         color={theme.palette.primary.main}>
         {placeholder}{" "}
         <span
@@ -46,14 +50,13 @@ export default function TextInput({
           boxSizing: "border-box",
         }}
       />
-      <Typography sx={{ fontSize: "15px", color: theme.palette.primary.sec }}>
-        <span
-          style={{
-            fontSize: "15px",
-            color: theme.palette.primary.sec,
-          }}>
-          {desc}
-        </span>
+      <Typography
+        fontFamily={lang == "ar" ? "Shamel" : ""}
+        sx={{
+          fontSize: lang == "ar" ? "13px" : "15px",
+          color: theme.palette.primary.sec,
+        }}>
+        {desc}
       </Typography>
     </Stack>
   );
