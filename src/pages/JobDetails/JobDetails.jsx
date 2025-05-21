@@ -76,6 +76,7 @@ function JobDetails() {
   }
 
   const jobData = job.jobData;
+  const canEdit = job.canEdit;
 
   return (
     <Box
@@ -422,6 +423,7 @@ function JobDetails() {
       </Box>
 
       <Stack
+        display={jobData.status === "pending" && canEdit ? "flex" : "none"}
         direction={{ xs: "column-reverse", sm: "row" }}
         spacing={2}
         sx={{ my: 2, width: "100%" }}>

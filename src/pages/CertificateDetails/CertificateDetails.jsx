@@ -220,6 +220,7 @@ function CertificateDetails() {
       </Stack>
 
       <Stack
+        display={certificate.verified ? "none" : "flex"}
         direction={{ xs: "column-reverse", sm: "row" }}
         spacing={2}
         sx={{ my: 2, width: "100%" }}>
