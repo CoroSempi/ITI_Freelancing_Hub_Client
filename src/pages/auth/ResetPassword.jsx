@@ -15,7 +15,7 @@ import LocalizationContext from "../../context/localizationContext";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { useState } from "react";
-import PasswordDialog from "../../components/auth/passwordDialog";
+import PasswordDialog from "../../components/auth/PasswordDialog";
 
 export default function ResetPassword() {
   const theme = useTheme();
@@ -74,7 +74,6 @@ export default function ResetPassword() {
       setOpen(true);
       setError("");
       localStorage.removeItem("AccessToken");
-   
     } else {
       setError(response.response.data.message);
     }
