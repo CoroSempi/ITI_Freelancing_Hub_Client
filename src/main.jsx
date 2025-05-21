@@ -10,7 +10,7 @@ import ForgetPassword from "./pages/auth/ForgetPassword.jsx";
 import VerifyCode from "./pages/auth/VerifyCode.jsx";
 import ResetPassword from "./pages/auth/ResetPassword.jsx";
 
-import Home from "./pages/home/Home.jsx";
+import Home from "./pages/Home/Home.jsx";
 import Notifications from "./pages/Notifications/Notifications.jsx";
 import Settings from "./pages/Settings/Settings.jsx";
 
@@ -20,6 +20,7 @@ import CertificateDetails from "./pages/CertificateDetails/CertificateDetails.js
 import DeleteModal from "./components/ModalDelete/ModalDelete.jsx";
 import NewJob from "./pages/NewJob/NewJob.jsx";
 import Certificate from "./components/NewJob/Certificate/Certificate.jsx";
+import AI from "./pages/Ai/AI.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -42,6 +43,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="certificateDetails/:id" element={<CertificateDetails />} />
         <Route path="delete" element={<DeleteModal />} />
         <Route path="learnMore" element={<LearnMore />} />
+        <Route path="ai" element={<AI />} />
         <Route path="notFound" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/notFound" replace />} />
       </Route>

@@ -7,6 +7,7 @@ import platFormReducer from "./slices/platform";
 import directFormReducer from "./slices/direct";
 import remoteFormReducer from "./slices/remote";
 import certificateFormReducer from "./slices/certificate";
+import aiReducer from "./slices/ai";
 
 export const store = configureStore({
   reducer: {
@@ -18,5 +19,6 @@ export const store = configureStore({
     direct: directFormReducer,
     remote: remoteFormReducer,
     certificate: certificateFormReducer,
+    ai: aiReducer,
   },
 });

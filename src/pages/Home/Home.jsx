@@ -3,14 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { CircularProgress, Stack } from "@mui/material";
-import User from "../../components/home/User";
-import TopCards from "../../components/home/TopCards";
-import Congrats from "../../components/home/Congrats";
-import axios from "axios";
-
-import AllJobs from "../../components/home/jobs/AllJobs.jsx";
-import AllCertificates from "../../components/home/certificate/AllCertificates.jsx";
-import NotiCounter from "../../components/home/notiCounter.jsx";
+import User from "../../components/Home/User";
+import TopCards from "../../components/Home/TopCards";
+import Congrats from "../../components/Home/Congrats";
+import AllJobs from "../../components/Home/jobs/AllJobs.jsx";
+import AllCertificates from "../../components/Home/certificate/AllCertificates.jsx";
+import NotiCounter from "../../components/Home/notiCounter.jsx";
 import NotiDrawer from "../../components/notifications/NotiDrawer.jsx";
 import { StudentData } from "../../redux/slices/profile.js";
 

@@ -10,21 +10,21 @@ import { headerLocalization } from "../../StaticData/Localization";
 
 import SettingsDrawer from "../settings/SettingsDrawer";
 import { useNavigate } from "react-router-dom";
+import AiDrawer from "../Ai/AiDrawer";
 
 export default function NavDrop() {
   const theme = useTheme();
   const nav = useNavigate();
   const { lang } = useContext(LocalizationProvider);
   const [settingsOpen, setSettingsOpen] = useState(false);
-
-  const [profileOpen, setProfileOpen] = useState(false);
+  const [aiOpen, setAiOpen] = useState(false);
 
   const settingsDrawer = (newOpen) => () => {
     setSettingsOpen(newOpen);
   };
 
-  const profileDrawer = (newOpen) => () => {
-    setProfileOpen(newOpen);
+  const aiDrawer = (newOpen) => () => {
+    setAiOpen(newOpen);
   };
 
   return (
@@ -77,6 +77,17 @@ export default function NavDrop() {
             {headerLocalization[lang].certificate}
           </Typography>
         </MenuItem>
+
+        <MenuItem onClick={aiDrawer(true)}>
+          <Typography
+            sx={{
+              fontFamily: lang == "ar" ? "ShamelBold" : "",
+              fontSize: lang == "ar" ? "14px" : "",
+            }}>
+            {headerLocalization[lang].ai}
+          </Typography>
+        </MenuItem>
+
         <MenuItem onClick={settingsDrawer(true)}>
           <Typography
             sx={{
@@ -88,6 +99,7 @@ export default function NavDrop() {
         </MenuItem>
       </Select>
       <SettingsDrawer open={settingsOpen} settingsDrawer={settingsDrawer} />
+      <AiDrawer open={aiOpen} aiDrawer={aiDrawer} />
     </>
   );
 }

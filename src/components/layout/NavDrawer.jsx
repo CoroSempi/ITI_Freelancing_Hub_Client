@@ -36,6 +36,7 @@ export default function NavDrawer({ open, navDrawer }) {
     "home",
     "addNewJob",
     "addNewCertificate",
+    "talktoAi",
     "settings",
     "about",
     "signOut",
@@ -91,6 +92,8 @@ export default function NavDrawer({ open, navDrawer }) {
                   ? () => nav("/choosejob")
                   : item == "addNewCertificate"
                   ? () => nav("/addCertificate")
+                  : item == "talktoAi"
+                  ? () => nav("/ai")
                   : () => nav(`/${item}`)
               }>
               <Typography fontFamily={isArabic ? "Shamel" : "inherit"}>
