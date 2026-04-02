@@ -8,7 +8,7 @@ export const countries = createAsyncThunk(
   "countries/get",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("https://restcountries.com/v3.1/all");
+      const response = await axios.get("https://restcountries.com/v3.1/all?fields=name,flags");
 
       const filteredCountries = response.data
         .filter((country) => country.name.common !== "Israel")
